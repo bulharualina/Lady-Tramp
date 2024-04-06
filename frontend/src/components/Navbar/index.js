@@ -1,22 +1,26 @@
 "use client";
 
 import { adminNavOptions, navOptions } from "@/utils";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { GlobalContext } from "@/context";
+import CommonModal from "../CommonModal";
 
 const isAdminView = false;
 const isAuthUser = true;
 const user = { role: "admin" };
 
-function NavItems({ isModalView = false, isAdminView, router }) {
+function NavItems({ isModalView = false }) {
   return (
     <div
-      className={"items-center justify-between w-full md:flex md:w-auto"}
+      className={`items-center justify-between w-full md:flex md:w-auto  ${
+        isModalView ? "" : "hidden"
+      }`}
       id="nav-items"
     >
       <ul
-        className={
-          "flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-zinc-900 "
-        }
+        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-zinc-900 ${
+          isModalView ? "border-none" : "border border-zinc-900"
+        } `}
       >
         {isAdminView
           ? adminNavOptions.map((item) => (
@@ -35,6 +39,7 @@ function NavItems({ isModalView = false, isAdminView, router }) {
 }
 
 export default function Navbar() {
+  const { showNavModal, setShowNavModal } = useContext(GlobalContext);
   return (
     <>
       <nav className="bg-zinc-900 fixed w-full z-20 top-0 left-0  ">
@@ -88,9 +93,15 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          <NavItems />
+          <NavItems isModal={false} />
         </div>
       </nav>
+      <CommonModal
+        showModalTitle={false}
+        mainContent={<NavItems isModalView={true} />}
+        show={showNavModal}
+        setShow={setShowNavModal}
+      />
     </>
   );
 }
