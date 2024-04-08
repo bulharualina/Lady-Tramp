@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
-    "@stripe/stripe-js": "^3.1.0",
-    "joi": "^17.12.2",
+    "@stripe/stripe-js": "^3.2.0",
+    "bcryptjs": "^2.4.3",
+    "firebase": "^10.10.0",
+    "joi": "^17.12.3",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.4",
+    "mongoose": "^8.3.0",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "stripe": "^14.24.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

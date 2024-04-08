@@ -52,21 +52,21 @@ export default function Navbar() {
           <div className="flex md:order-2 gap-2">
             {!isAdminView && isAuthUser ? (
               <Fragment>
-                <button className={"button-navbar"}>Account</button>
-                <button className={"button-navbar"}>Favorites</button>
+                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Account</button>
+                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Favorites</button>
               </Fragment>
             ) : null}
             {user?.role === "admin" ? (
               isAdminView ? (
-                <button className={"button-navbar"}>Client View</button>
+                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Client View</button>
               ) : (
-                <button className={"button-navbar"}>Admin View</button>
+                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Admin View</button>
               )
             ) : null}
             {isAuthUser ? (
-              <button className={"button-navbar"}>Logout</button>
+              <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Logout</button>
             ) : (
-              <button className={"button-navbar"}>Login</button>
+              <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Login</button>
             )}
 
             <button
