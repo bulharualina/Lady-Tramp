@@ -1,11 +1,15 @@
 'use client';
 
+import Cookies from 'js-cookie'
 import InputComponent from '@/components/FormElements/InputComponent';
 import ComponentLevelLoader from '@/components/Loader/componentlevel';
+import Notification from '@/components/Notification';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { login } from '@/services/login';
 import { GlobalContext } from '@/context';
 import { loginFormControls } from '@/utils';
+import { toast } from 'react-toastify';
 
 const initialFormData = {
   name: '',
@@ -24,7 +28,7 @@ export default function Login() {
     componentLevelLoader,
     setComponentLevelLoader,
   } = useContext(GlobalContext);
-  
+
   const router = useRouter();
   console.log(formData);
   function isValidForm() {
@@ -61,11 +65,17 @@ export default function Login() {
       setComponentLevelLoader({ loading: false, id: '' });
     }
   }
+  console.log(isAuthUser, user);
+
+  useEffect(() => {
+    if (isAuthUser) router.push('/');
+  }, [isAuthUser]);
+
 
 
   return (
     <div
-      className="bg-white relative"
+      className="h-screen w-screen"
     >
       <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-8 mr-auto xl:px-6 lg:flex-row">
         <div className="flex flex-col justify-center items-center w-full pr-10 pl-10 lg:flex-row">
@@ -81,6 +91,13 @@ export default function Login() {
                       label={controlItem.label}
                       placeholder={controlItem.placeholder}
                       type={controlItem.type}
+                      value={formData[controlItem.id]}
+                      onChange={(event) => {
+                        setFormData({
+                          ...formData,
+                          [controlItem.id]: event.target.value,
+                        });
+                      }}
                     />
                   ) : null
                 )}
@@ -108,7 +125,7 @@ export default function Login() {
                 <div className="flex flex-col gap-1.5">
                   <p>New to website ?</p>
                   <button
-                    className="inline-flex w-full items-center justify-center px-6 py-3 text-lg 
+                    className=" inline-flex w-full items-center justify-center px-6 py-3 text-lg 
                      text-white transition-all duration-200 ease-in-out focus:shadow font-medium tracking-wide
                      "
                     style={{
@@ -125,6 +142,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <Notification></Notification>
     </div>
   );
 }

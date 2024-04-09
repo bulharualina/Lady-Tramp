@@ -2,14 +2,13 @@
 
 import InputComponent from '@/components/FormElements/InputComponent';
 import SelectComponent from '@/components/FormElements/SelectComponent';
-//import ComponentLevelLoader from '@/components/Loader/componentlevel';
-
+import ComponentLevelLoader from '@/components/Loader/componentlevel';
 import { GlobalContext } from '@/context';
-//import { registerNewUser } from '@/app/register';
+import { registerNewUser } from '@/services/register';
 import { registrationFormControls } from '@/utils';
-//import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const initialFormData = {
   name: '',
@@ -23,7 +22,6 @@ export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false);
   const { pageLevelLoader, setPageLevelLoader, isAuthUser } =
     useContext(GlobalContext);
-  //const router = useRouter();
   console.log(formData);
 
   function isFormValid() {
@@ -60,6 +58,7 @@ export default function Register() {
 
     console.log(data);
   }
+
 
   useEffect(() => {
     if (isAuthUser) router.push('/');
