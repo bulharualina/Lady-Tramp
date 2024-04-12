@@ -46,7 +46,6 @@ export default function CommonModal({
                           <Dialog.Title>{modalTitle}</Dialog.Title>
                         </div>
                       ) : null}
-
                       <div className="mt-20">{mainContent}</div>
                     </div>
                     {showButtons ? (

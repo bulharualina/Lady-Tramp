@@ -1,3 +1,5 @@
+import { options } from "joi";
+
 export default function SelectComponent({
   label,
   value,
@@ -25,10 +27,7 @@ export default function SelectComponent({
             </option>
           ))
         ) : (
-          <option id="" value={""}>
-            {" "}
-            Select{" "}
-          </option>
+          <option value={""}> Select </option>
         )}
       </select>
     </div>

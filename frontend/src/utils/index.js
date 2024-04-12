@@ -33,7 +33,7 @@ export const adminNavOptions = [
     path: "/admin-view/all-dogs",
   },
   {
-    id: "adminNewProduct",
+    id: "adminNewDog",
     label: "Add New Dog",
     path: "/admin-view/add-dog",
   },
@@ -41,40 +41,40 @@ export const adminNavOptions = [
 
 export const registrationFormControls = [
   {
-    id: 'name',
-    type: 'text',
-    placeholder: 'Enter your name',
-    label: 'Name',
-    componentType: 'input',
+    id: "name",
+    type: "text",
+    placeholder: "Enter your name",
+    label: "Name",
+    componentType: "input",
   },
   {
-    id: 'email',
-    type: 'email',
-    placeholder: 'Enter your email',
-    label: 'Email',
-    componentType: 'input',
+    id: "email",
+    type: "email",
+    placeholder: "Enter your email",
+    label: "Email",
+    componentType: "input",
   },
   {
-    id: 'password',
-    type: 'password',
-    placeholder: 'Enter your password',
-    label: 'Password',
-    componentType: 'input',
+    id: "password",
+    type: "password",
+    placeholder: "Enter your password",
+    label: "Password",
+    componentType: "input",
   },
   {
-    id: 'role',
-    type: '',
-    placeholder: '',
-    label: 'Role',
-    componentType: 'select',
+    id: "role",
+    type: "",
+    placeholder: "",
+    label: "Role",
+    componentType: "select",
     options: [
       {
-        id: 'admin',
-        label: 'Admin',
+        id: "admin",
+        label: "Admin",
       },
       {
-        id: 'customer',
-        label: 'Customer',
+        id: "customer",
+        label: "Customer",
       },
     ],
   },
@@ -82,17 +82,70 @@ export const registrationFormControls = [
 
 export const loginFormControls = [
   {
-    id: 'email',
-    type: 'email',
-    placeholder: 'Enter your email',
-    label: 'Email',
-    componentType: 'input',
+    id: "email",
+    type: "email",
+    placeholder: "Enter your email",
+    label: "Email",
+    componentType: "input",
   },
   {
-    id: 'password',
-    type: 'password',
-    placeholder: 'Enter your password',
-    label: 'Password',
-    componentType: 'input',
+    id: "password",
+    type: "password",
+    placeholder: "Enter your password",
+    label: "Password",
+    componentType: "input",
+  },
+];
+
+export const adminAddDogformControls = [
+  {
+    id: "name",
+    type: "text",
+    placeholder: "Enter name",
+    label: "Name",
+    componentType: "input",
+  },
+  {
+    id: "description",
+    type: "text",
+    placeholder: "Enter description",
+    label: "Description",
+    componentType: "input",
+  },
+  {
+    id: "gender",
+    type: "",
+    placeholder: "",
+    label: "Gender",
+    componentType: "select",
+    options: [
+      {
+        id: "listingMale",
+        label: "Male",
+      },
+      {
+        id: "listingFemale",
+        label: "Female",
+      },
+    ],
+  },
+];
+
+export const Sizes = [
+  {
+    id: "s",
+    label: "S",
+  },
+  {
+    id: "m",
+    label: "M",
+  },
+  {
+    id: "l",
+    label: "L",
+  },
+  {
+    id: "xl",
+    label: "XL",
   },
 ];

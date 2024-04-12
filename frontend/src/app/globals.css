@@ -7,7 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -15,7 +15,41 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+*/
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
+  }
+}
+
+/*
+body {
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  color: rgb(var(--foreground-rgb));
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Define your default (light) theme 
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* Define your dark theme 
+body.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+*/
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -26,22 +60,8 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-.button-navbar {
-  @apply text-neutral-50 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-neutral-50 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800;
-}
-
-.navbar-products {
-  @apply cursor-pointer block py-2 pl-3 pr-4 text-neutral-100 rounded md:p-0;
-}
-
 body::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 
 body::-webkit-scrollbar-track {
@@ -49,6 +69,45 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
+  background-color: rgb(244 244 245);
   outline: 1px solid slategrey;
+}
+/*
+.button-navbar {
+  @apply text-neutral-100 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
+}
+*/
+
+.navbar-products {
+  @apply cursor-pointer block py-2 pl-3 pr-4 text-[#3C2925] rounded md:p-0;
+}
+
+.button-navbar {
+  @apply text-[#3C2925] hover:text-[#3C2925] border border-[#3C2925] hover:bg-[#3C2925] focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-[#3C2925] dark:text-[#3C2925] dark:hover:text-white dark:hover:bg-[#3C2925] dark:focus:ring-[#3C2925];
+}
+
+.button-custom {
+  @apply w-full text-[#3C2925] hover:text-[#3C2925] border border-[#3C2925] hover:bg-[#3C2925] focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-[#3C2925] dark:text-[#3C2925] dark:hover:text-white dark:hover:bg-[#3C2925] dark:focus:ring-[#3C2925];
+}
+
+/*
+.button-custom {
+  @apply inline-flex w-full items-center justify-center  rounded-lg tracking-wide py-2.5 text-center mr-2 mb-2  bg-[#3C2925] px-5 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-[#3C2925] hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-[#3C2925] focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-[#3C2925] active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-[#3C2925] dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-[#3C2925] dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-[#3C2925] dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-[#3C2925] dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)];
+}*/
+
+.custom-file-input {
+  @apply cursor-pointer inline-block text-white bg-[#3C2925] py-2 px-4 rounded-md;
+}
+
+/*
+.hidden-file {
+  @apply hidden;
+}*/
+
+#choose-file {
+  @apply px-4 py-2 bg-[#3C2925] text-white rounded-md;
+}
+
+#custom-text {
+  @apply ml-5 text-white;
 }

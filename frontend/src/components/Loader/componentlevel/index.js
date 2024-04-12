@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { PulseLoader } from 'react-spinners';
+import { PulseLoader } from "react-spinners";
 
 export default function ComponentLevelLoader({ text, color, loading, size }) {
   return (

@@ -1,9 +1,12 @@
-export const login = async (formData) => {
+import Cookies from "js-cookie";
+
+export const addNewDog = async (formData) => {
   try {
-    const response = await fetch("/api/login", {
+    const response = await fetch("/api/admin/add-dog", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
       body: JSON.stringify(formData),
     });

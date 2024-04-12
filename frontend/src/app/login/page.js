@@ -1,21 +1,19 @@
-'use client';
-
-import Cookies from 'js-cookie'
-import InputComponent from '@/components/FormElements/InputComponent';
-import ComponentLevelLoader from '@/components/Loader/componentlevel';
-import Notification from '@/components/Notification';
-import { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { login } from '@/services/login';
-import { GlobalContext } from '@/context';
-import { loginFormControls } from '@/utils';
-import { toast } from 'react-toastify';
+"use client";
+import InputComponent from "@/components/FormElements/InputComponent";
+import SelectComponent from "@/components/FormElements/SelectComponent";
+import ComponentLevelLoader from "@/components/Loader/componentlevel";
+import Notification from "@/components/Notification";
+import { GlobalContext } from "@/context";
+import { login } from "@/services/login";
+import { loginFormControls } from "@/utils";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const initialFormData = {
-  name: '',
-  email: '',
-  password: '',
-  role: 'customer',
+  email: "",
+  password: "",
 };
 
 export default function Login() {
@@ -30,67 +28,67 @@ export default function Login() {
   } = useContext(GlobalContext);
 
   const router = useRouter();
+
   console.log(formData);
+
   function isValidForm() {
     return formData &&
       formData.email &&
-      formData.email.trim() !== '' &&
+      formData.email.trim() !== "" &&
       formData.password &&
-      formData.password.trim() !== ''
+      formData.password.trim() !== ""
       ? true
       : false;
   }
-  console.log(isValidForm());
 
   async function handleLogin() {
-    setComponentLevelLoader({ loading: true, id: '' });
+    setComponentLevelLoader({ loading: true, id: "" });
     const res = await login(formData);
 
     console.log(res);
+
     if (res.success) {
       toast.success(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
       setIsAuthUser(true);
       setUser(res?.finalData?.user);
-      setFormData(initialFormdata);
-      Cookies.set('token', res?.finalData?.token);
-      localStorage.setItem('user', JSON.stringify(res?.finalData?.user));
-      setComponentLevelLoader({ loading: false, id: '' });
+      setFormData(initialFormData);
+      Cookies.set("token", res?.finalData?.token);
+      localStorage.setItem("user", JSON.stringify(res?.finalData?.user));
+      setComponentLevelLoader({ loading: false, id: "" });
     } else {
       toast.error(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
       setIsAuthUser(false);
-      setComponentLevelLoader({ loading: false, id: '' });
+      setComponentLevelLoader({ loading: false, id: "" });
     }
   }
+
   console.log(isAuthUser, user);
 
   useEffect(() => {
-    if (isAuthUser) router.push('/');
+    if (isAuthUser) router.push("/");
   }, [isAuthUser]);
 
-
-
   return (
-    <div
-      className="h-screen w-screen"
-    >
-      <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-8 mr-auto xl:px-6 lg:flex-row">
+    <div className="bg-white relative">
+      <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-8 mr-auto xl:px-5 lg:flex-row">
         <div className="flex flex-col justify-center items-center w-full pr-10 pl-10 lg:flex-row">
           <div className="w-full mt-10 mr-0 mb-0 ml-0 relative max-w-2xl lg:mt-0 lg:w-5/12">
-            <div className="flex flex-col items-center justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl relative z-">
-              <p className="w-full text-4xl font-bold text-center font-sans serif">
+            <div className="flex flex-col items-center justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl relative z-10">
+              <p className="w-full text-4xl font-medium text-center font-serif">
                 Login
               </p>
-              <div className="w-full mt-16 mr-0 mb-0 ml-0 relative space-y-8">
+
+              <div className="w-full mt-6 mr-0 mb-0 ml-0 relative space-y-8">
                 {loginFormControls.map((controlItem) =>
-                  controlItem.componentType === 'input' ? (
+                  controlItem.componentType === "input" ? (
                     <InputComponent
-                      label={controlItem.label}
-                      placeholder={controlItem.placeholder}
                       type={controlItem.type}
+                      placeholder={controlItem.placeholder}
+                      label={controlItem.label}
                       value={formData[controlItem.id]}
                       onChange={(event) => {
                         setFormData({
@@ -99,40 +97,36 @@ export default function Login() {
                         });
                       }}
                     />
+                  ) : controlItem.componentType === "select" ? (
+                    <SelectComponent
+                      options={controlItem.options}
+                      label={controlItem.label}
+                    />
                   ) : null
                 )}
                 <button
-                  className="disabled:opacity-50 inline-flex w-full items-center justify-center px-6 py-3 text-lg text-white transition-all duration-200 ease-in-out focus:shadow font-medium tracking-wide"
-                  style={{
-                    background: '#7A001A',
-                    borderRadius: 6,
-                  }}
-                  disabled={!isValidForm()}
+                  className={`button-custom ${
+                    !isValidForm() ? "opacity-50" : ""
+                  }`}
                   onClick={handleLogin}
                 >
                   {componentLevelLoader && componentLevelLoader.loading ? (
                     <ComponentLevelLoader
-                      text={'Logging In'}
-                      color={'#ffffff'}
+                      text={"Logging In"}
+                      color={"#3C2925"}
                       loading={
                         componentLevelLoader && componentLevelLoader.loading
                       }
                     />
                   ) : (
-                    'Login'
+                    "Login"
                   )}
                 </button>
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-2">
                   <p>New to website ?</p>
                   <button
-                    className=" inline-flex w-full items-center justify-center px-6 py-3 text-lg 
-                     text-white transition-all duration-200 ease-in-out focus:shadow font-medium tracking-wide
-                     "
-                    style={{
-                      background: '#7A001A',
-                      borderRadius: 6,
-                    }}
-                    onClick={() => router.push('/register')}
+                    className="button-custom"
+                    onClick={() => router.push("/register")}
                   >
                     Register
                   </button>
@@ -142,7 +136,7 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <Notification></Notification>
+      <Notification />
     </div>
   );
 }

@@ -1,14 +1,13 @@
 "use client";
 
+import { GlobalContext } from "@/context";
 import { adminNavOptions, navOptions } from "@/utils";
 import { Fragment, useContext } from "react";
-import { useRouter } from 'next/navigation';
-import { GlobalContext } from "@/context";
 import CommonModal from "../CommonModal";
+import { usePathname, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
-const isAdminView = false;
-
-function NavItems({ isModalView = false }) {
+function NavItems({ isModalView = false, isAdminView, router }) {
   return (
     <div
       className={`items-center justify-between w-full md:flex md:w-auto  ${
@@ -17,18 +16,26 @@ function NavItems({ isModalView = false }) {
       id="nav-items"
     >
       <ul
-        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-zinc-900 ${
-          isModalView ? "border-none" : "border border-zinc-900"
+        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${
+          isModalView ? "border-none" : "border border-[#3C2925]"
         } `}
       >
         {isAdminView
           ? adminNavOptions.map((item) => (
-              <li className="navbar-products" key={item.id}>
+              <li
+                className="navbar-products"
+                key={item.id}
+                onClick={() => router.push(item.path)}
+              >
                 {item.label}
               </li>
             ))
           : navOptions.map((item) => (
-              <li className="navbar-products" key={item.id}>
+              <li
+                className="navbar-products"
+                key={item.id}
+                onClick={() => router.push(item.path)}
+              >
                 {item.label}
               </li>
             ))}
@@ -44,57 +51,79 @@ export default function Navbar() {
     isAuthUser,
     setIsAuthUser,
     setUser,
-    currentUpdatedProduct,
-    setCurrentUpdatedProduct,
+    currentUpdatedDog,
+    setCurrentUpdatedDog,
     showCartModal,
     setShowCartModal,
   } = useContext(GlobalContext);
+
+  const pathName = usePathname();
   const router = useRouter();
 
-  console.log(user, isAuthUser, 'navbar');
+  console.log(pathName);
 
   function handleLogout() {
     setIsAuthUser(false);
     setUser(null);
-    Cookies.remove('token');
+    Cookies.remove("token");
     localStorage.clear();
-    router.push('/');
+    router.push("/");
   }
 
+  const isAdminView = pathName.includes("admin-view");
 
   return (
     <>
-      <nav className="bg-zinc-900 fixed w-full z-20 top-0 left-0  ">
+      <nav className="bg-white fixed w-full z-20 top-0 left-0  ">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <div className="flex items-center cursor-pointer">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-100">
+          <div
+            onClick={() => router.push("/")}
+            className="flex items-center cursor-pointer"
+          >
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-[#3C2925]">
               Lady&Tramp
             </span>
           </div>
           <div className="flex md:order-2 gap-2">
             {!isAdminView && isAuthUser ? (
               <Fragment>
-                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Account</button>
-                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Favorites</button>
+                <button className={"button-navbar"}>Account</button>
+                <button className={"button-navbar"}>Favorites</button>
               </Fragment>
             ) : null}
             {user?.role === "admin" ? (
               isAdminView ? (
-                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Client View</button>
+                <button
+                  onClick={() => router.push("/")}
+                  className={"button-navbar"}
+                >
+                  Client View
+                </button>
               ) : (
-                <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Admin View</button>
+                <button
+                  onClick={() => router.push("/admin-view")}
+                  className={"button-navbar"}
+                >
+                  Admin View
+                </button>
               )
             ) : null}
             {isAuthUser ? (
-              <button onClick={handleLogout} className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Logout</button>
+              <button onClick={handleLogout} className={"button-navbar"}>
+                Logout
+              </button>
             ) : (
-              <button onClick={() => router.push('/login')}  className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Login</button>
+              <button
+                onClick={() => router.push("/login")}
+                className={"button-navbar"}
+              >
+                Login
+              </button>
             )}
-
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
-              className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 text-sm text-[#3C2925] rounded-lg md:hidden hover:bg-white focus:outline-none focus:ring-2 focus:ring-orange-50 dark:text-orange-100 dark:hover:bg-orange-200 dark:focus:ring-orange-300"
               aria-controls="navbar-sticky"
               aria-expanded="false"
               onClick={() => setShowNavModal(true)}
@@ -108,22 +137,30 @@ export default function Navbar() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule="evenodd"
+                  fill-rule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
+                  clip-rule="evenodd"
                 ></path>
               </svg>
             </button>
           </div>
-          <NavItems isModal={false} />
+          <NavItems router={router} isAdminView={isAdminView} />
         </div>
       </nav>
-      <CommonModal
-        showModalTitle={false}
-        mainContent={<NavItems isModalView={true} />}
-        show={showNavModal}
-        setShow={setShowNavModal}
-      />
+      {
+        <CommonModal
+          showModalTitle={false}
+          mainContent={
+            <NavItems
+              router={router}
+              isModalView={true}
+              isAdminView={isAdminView}
+            />
+          }
+          show={showNavModal}
+          setShow={setShowNavModal}
+        />
+      }
     </>
   );
 }

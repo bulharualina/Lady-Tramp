@@ -1,9 +1,9 @@
 export const registerNewUser = async (formData) => {
   try {
-    const response = await fetch('/api/register', {
-      method: 'POST',
+    const response = await fetch("/api/register", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(formData),
     });
@@ -12,6 +12,6 @@ export const registerNewUser = async (formData) => {
 
     return finalData;
   } catch (e) {
-    console.log('error', e);
+    console.log("error", e);
   }
 };
