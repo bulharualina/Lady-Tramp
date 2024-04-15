@@ -11,6 +11,6 @@ const DogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Dog = mongoose.models.Dogs || mongoose.model("Dogs", DogSchema);
+const Dog = mongoose.models.Dog || mongoose.model("Dog", DogSchema);
 
 export default Dog;

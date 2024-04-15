@@ -149,3 +149,15 @@ export const Sizes = [
     label: "XL",
   },
 ];
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDr2X8g7z2exsLCVXQfOmB2T3IQB2WKAYI",
+  authDomain: "ladytramp-888cb.firebaseapp.com",
+  projectId: "ladytramp-888cb",
+  storageBucket: "ladytramp-888cb.appspot.com",
+  messagingSenderId: "572019914987",
+  appId: "1:572019914987:web:123c63e3085c3ac067a6ae",
+  measurementId: "G-JEGWW7GVEB",
+};
+
+export const firebaseStorageURL = "gs://ladytramp-888cb.appspot.com";
