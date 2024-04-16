@@ -1,4 +1,4 @@
-export default function TitleComponent({ data, selected = [], onClick }) {
+export default function TileComponent({ data, selected = [], onClick }) {
   return data && data.length ? (
     <div className="mt-3 flex flex-wrap items-center gap-1">
       {data.map((dataItem) => (

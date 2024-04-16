@@ -129,24 +129,30 @@ export const adminAddDogformControls = [
       },
     ],
   },
-];
-
-export const Sizes = [
   {
-    id: "s",
-    label: "S",
-  },
-  {
-    id: "m",
-    label: "M",
-  },
-  {
-    id: "l",
-    label: "L",
-  },
-  {
-    id: "xl",
-    label: "XL",
+    id: "sizes",
+    type: "",
+    placeholder: "",
+    label: "Size",
+    componentType: "select",
+    options: [
+      {
+        id: "listingS",
+        label: "S",
+      },
+      {
+        id: "listingM",
+        label: "M",
+      },
+      {
+        id: "listingL",
+        label: "L",
+      },
+      {
+        id: "listingXL",
+        label: "XL",
+      },
+    ],
   },
 ];
 

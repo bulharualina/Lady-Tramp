@@ -113,7 +113,7 @@ export default function Login() {
                   {componentLevelLoader && componentLevelLoader.loading ? (
                     <ComponentLevelLoader
                       text={"Logging In"}
-                      color={"#000000"}
+                      color={"#ffffff"}
                       loading={
                         componentLevelLoader && componentLevelLoader.loading
                       }

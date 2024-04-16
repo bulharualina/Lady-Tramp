@@ -4,11 +4,11 @@ import Joi from "joi";
 import { NextResponse } from "next/server";
 
 const AddNewDogSchema = Joi.object({
-  name: Joi.string().required,
-  description: Joi.string().required,
-  sizes: Joi.string().required,
-  gender: Joi.string().required,
-  imageUrl: Joi.string().required,
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+  sizes: Joi.string().required(),
+  gender: Joi.string().required(),
+  imageUrl: Joi.string().required(),
 });
 
 export const dynamic = "force-dynamic";

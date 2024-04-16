@@ -2,16 +2,19 @@
 
 import InputComponent from "@/components/FormElements/InputComponent";
 import SelectComponent from "@/components/FormElements/SelectComponent";
-import TitleComponent from "@/components/FormElements/TitleComponent";
+import ComponentLevelLoader from "@/components/Loader/componentlevel";
+import Notification from "@/components/Notification";
+import { GlobalContext } from "@/context";
+import { addNewDog } from "@/services/dog";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { initializeApp } from "firebase/app";
+import { useRouter } from "next/navigation";
 import {
   adminAddDogformControls,
   firebaseConfig,
   firebaseStorageURL,
-  Sizes,
 } from "@/utils";
-import Script from "next/script";
-import { useState } from "react";
-import { initializeApp } from "firebase/app";
 import {
   ref,
   getStorage,
@@ -53,14 +56,19 @@ async function helperForUploadingImageToFirebase(file) {
 
 const initialFormData = {
   name: "",
-  sizes: [],
   description: "",
+  sizes: "S",
   gender: "Male",
   imageUrl: "",
 };
 
 export default function AdminAddNewDog() {
   const [formData, setFormData] = useState(initialFormData);
+
+  const { componentLevelLoader, setComponentLevelLoader } =
+    useContext(GlobalContext);
+
+  const router = useRouter();
 
   async function handleImage(event) {
     console.log(event.target.files);
@@ -78,20 +86,29 @@ export default function AdminAddNewDog() {
     }
   }
 
-  function handleTileClick(getCurrentItem) {
-    let cpySizes = [...formData.sizes];
-    const index = cpySizes.findIndex((item) => item.id === getCurrentItem.id);
+  async function handleAddDog() {
+    const res = await addNewDog(formData);
 
-    if (index === -1) {
-      cpySizes.push(getCurrentItem);
+    console.log(res);
+
+    if (res.success) {
+      setComponentLevelLoader({ loading: true, id: "" });
+      toast.success(res.message, {
+        position: "top-right",
+      });
+
+      setFormData(initialFormData);
+
+      setTimeout(() => {
+        router.push("/admin-view/all-dogs");
+      }, 1000);
     } else {
-      cpySizes = cpySizes.filter((item) => item.id !== getCurrentItem.id);
+      setComponentLevelLoader({ loading: false, id: "" });
+      toast.error(res.message, {
+        position: "top-right",
+      });
+      setFormData(initialFormData);
     }
-
-    setFormData({
-      ...formData,
-      sizes: cpySizes,
-    });
   }
 
   console.log(formData);
@@ -108,16 +125,11 @@ export default function AdminAddNewDog() {
             onChange={handleImage}
           />
           <div className="flex gap-2 flex-col text-zinc-900 bg-white">
-            <label>Sizes</label>
-            <TitleComponent
-              selected={formData.sizes}
-              onClick={handleTileClick}
-              data={Sizes}
-            />
             <div className="mt-6 mr-0 mb-0 ml-0 relative space-y-8">
               {adminAddDogformControls.map((controlItem) =>
                 controlItem.componentType === "input" ? (
                   <InputComponent
+                    //key={index}
                     type={controlItem.type}
                     placeholder={controlItem.placeholder}
                     label={controlItem.label}
@@ -131,6 +143,7 @@ export default function AdminAddNewDog() {
                   />
                 ) : controlItem.componentType === "select" ? (
                   <SelectComponent
+                    //key={index}
                     label={controlItem.label}
                     options={controlItem.options}
                     value={formData[controlItem.id]}
@@ -143,11 +156,24 @@ export default function AdminAddNewDog() {
                   />
                 ) : null
               )}
-              <button className="button-custom">Add</button>
+              <button onClick={handleAddDog} className="button-custom">
+                {componentLevelLoader && componentLevelLoader.loading ? (
+                  <ComponentLevelLoader
+                    text={"Adding Dog"}
+                    color={"#ffffff"}
+                    loading={
+                      componentLevelLoader && componentLevelLoader.loading
+                    }
+                  />
+                ) : (
+                  "Add Dog"
+                )}
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <Notification />
     </div>
   );
 }

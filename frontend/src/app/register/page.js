@@ -111,7 +111,7 @@ export default function Register() {
                     {pageLevelLoader && pageLevelLoader.loading ? (
                       <ComponentLevelLoader
                         text={"Registering"}
-                        color={"#000000"}
+                        color={"#ffffff"}
                         loading={pageLevelLoader && pageLevelLoader.loading}
                       />
                     ) : (
