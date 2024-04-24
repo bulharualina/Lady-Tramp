@@ -7,22 +7,22 @@ export const navOptions = [
   {
     id: "listingNews",
     label: "News",
-    path: "/product/listing/news",
+    path: "/dog/listing/news",
   },
   {
     id: "listing",
     label: "Adopt",
-    path: "/product/listing/adopt",
+    path: "/dog/listing/adopt",
   },
   {
     id: "listingDonate",
     label: "Donate",
-    path: "/product/listing/donate",
+    path: "/dog/listing/donate",
   },
   {
     id: "listingContact",
     label: "Contact",
-    path: "/product/listing/contact",
+    path: "/dog/listing/contact",
   },
 ];
 

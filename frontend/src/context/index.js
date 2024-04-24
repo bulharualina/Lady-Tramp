@@ -15,7 +15,8 @@ export default function GlobalState({ children }) {
   });
   const [isAuthUser, setIsAuthUser] = useState(null);
   const [user, setUser] = useState(null);
-  
+  const [currentUpdatedDog, setCurrentUpdatedDog] = useState(null);
+
 
   useEffect(() => {
     console.log(Cookies.get("token"));
@@ -42,7 +43,8 @@ export default function GlobalState({ children }) {
         setUser,
         componentLevelLoader,
         setComponentLevelLoader,
-       
+        currentUpdatedDog, 
+        setCurrentUpdatedDog,
       }}
     >
       {children}

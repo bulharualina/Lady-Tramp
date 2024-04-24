@@ -2,7 +2,7 @@
 
 import { GlobalContext } from "@/context";
 import { adminNavOptions, navOptions } from "@/utils";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import { usePathname, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
@@ -61,6 +61,17 @@ export default function Navbar() {
   const router = useRouter();
 
   console.log(pathName);
+
+  console.log(currentUpdatedDog, 'navbar');
+  
+  useEffect(() => {
+    if (
+      pathName !== '/admin-view/add-dog' &&
+      currentUpdatedDog !== null
+    )
+      setCurrentUpdatedDog(null);
+  }, [pathName]);
+
 
   function handleLogout() {
     setIsAuthUser(false);

@@ -5,7 +5,7 @@ import SelectComponent from "@/components/FormElements/SelectComponent";
 import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import Notification from "@/components/Notification";
 import { GlobalContext } from "@/context";
-import { addNewDog } from "@/services/dog";
+import { addNewDog, updateADog } from "@/services/dog";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { initializeApp } from "firebase/app";
@@ -40,7 +40,7 @@ async function helperForUploadingImageToFirebase(file) {
   return new Promise((resolve, reject) => {
     uploadImage.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => { },
       (error) => {
         console.log(error);
         reject(error);
@@ -65,10 +65,19 @@ const initialFormData = {
 export default function AdminAddNewDog() {
   const [formData, setFormData] = useState(initialFormData);
 
-  const { componentLevelLoader, setComponentLevelLoader } =
-    useContext(GlobalContext);
+  const { componentLevelLoader,
+    setComponentLevelLoader,
+    currentUpdatedDog,
+    setCurrentUpdatedDog,
+  } = useContext(GlobalContext);
+
+  console.log(currentUpdatedDog);
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (currentUpdatedDog !== null) setFormData(currentUpdatedDog);
+  }, [currentUpdatedDog]);
 
   async function handleImage(event) {
     console.log(event.target.files);
@@ -87,7 +96,12 @@ export default function AdminAddNewDog() {
   }
 
   async function handleAddDog() {
-    const res = await addNewDog(formData);
+    setComponentLevelLoader({ loading: true, id: '' });
+    const res =
+      currentUpdatedDog !== null
+        ? await updateADog(formData)
+        : await addNewDog(formData);
+
 
     console.log(res);
 
@@ -98,7 +112,7 @@ export default function AdminAddNewDog() {
       });
 
       setFormData(initialFormData);
-
+      setCurrentUpdatedDog(null);
       setTimeout(() => {
         router.push("/admin-view/all-dogs");
       }, 1000);
@@ -159,14 +173,20 @@ export default function AdminAddNewDog() {
               <button onClick={handleAddDog} className="button-custom">
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader
-                    text={"Adding Dog"}
+                    text={currentUpdatedDog !== null
+                      ? 'Updating Dog'
+                      : 'Adding Dog'
+                    }
                     color={"#ffffff"}
                     loading={
                       componentLevelLoader && componentLevelLoader.loading
                     }
                   />
+                ) : currentUpdatedDog !== null ? (
+                  "Update Dog"
                 ) : (
                   "Add Dog"
+
                 )}
               </button>
             </div>
