@@ -6,7 +6,7 @@ import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import Notification from "@/components/Notification";
 import { GlobalContext } from "@/context";
 import { addNewDog, updateADog } from "@/services/dog";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { initializeApp } from "firebase/app";
 import { useRouter } from "next/navigation";
@@ -40,7 +40,7 @@ async function helperForUploadingImageToFirebase(file) {
   return new Promise((resolve, reject) => {
     uploadImage.on(
       "state_changed",
-      (snapshot) => { },
+      (snapshot) => {},
       (error) => {
         console.log(error);
         reject(error);
@@ -65,7 +65,8 @@ const initialFormData = {
 export default function AdminAddNewDog() {
   const [formData, setFormData] = useState(initialFormData);
 
-  const { componentLevelLoader,
+  const {
+    componentLevelLoader,
     setComponentLevelLoader,
     currentUpdatedDog,
     setCurrentUpdatedDog,
@@ -96,12 +97,11 @@ export default function AdminAddNewDog() {
   }
 
   async function handleAddDog() {
-    setComponentLevelLoader({ loading: true, id: '' });
+    setComponentLevelLoader({ loading: true, id: "" });
     const res =
       currentUpdatedDog !== null
         ? await updateADog(formData)
         : await addNewDog(formData);
-
 
     console.log(res);
 
@@ -173,9 +173,8 @@ export default function AdminAddNewDog() {
               <button onClick={handleAddDog} className="button-custom">
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader
-                    text={currentUpdatedDog !== null
-                      ? 'Updating Dog'
-                      : 'Adding Dog'
+                    text={
+                      currentUpdatedDog !== null ? "Updating Dog" : "Adding Dog"
                     }
                     color={"#ffffff"}
                     loading={
@@ -186,7 +185,6 @@ export default function AdminAddNewDog() {
                   "Update Dog"
                 ) : (
                   "Add Dog"
-
                 )}
               </button>
             </div>
