@@ -1,15 +1,15 @@
-import connectToDB from '@/database';
-import Dog from '@/models/dog';
-import { NextResponse } from 'next/server';
+import connectToDB from "@/database";
+import Dog from "@/models/dog";
+import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET(req) {
   try {
     await connectToDB();
     const { searchParams } = new URL(req.url);
-    const id = searchParams.get('id');
-    const getData = await Dog.find({ category: id });
+    const id = searchParams.get("id");
+    const getData = await Dog.find({ gender: id });
 
     if (getData) {
       return NextResponse.json({
@@ -20,14 +20,14 @@ export async function GET(req) {
       return NextResponse.json({
         success: false,
         status: 204,
-        message: 'No dogs found !',
+        message: "No dogs found !",
       });
     }
   } catch (e) {
     console.log(error);
     return NextResponse.json({
       success: false,
-      message: 'Something went wrong ! Please try again later',
+      message: "Something went wrong ! Please try again later",
     });
   }
 }

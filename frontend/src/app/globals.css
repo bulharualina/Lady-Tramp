@@ -72,11 +72,6 @@ body::-webkit-scrollbar-thumb {
   background-color: rgb(244 244 245);
   outline: 1px solid slategrey;
 }
-/*
-.button-navbar {
-  @apply text-neutral-100 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
-}
-*/
 
 .navbar-products {
   @apply cursor-pointer block py-2 pl-3 pr-4 text-[#3C2925] rounded md:p-0;
@@ -90,19 +85,47 @@ body::-webkit-scrollbar-thumb {
   @apply w-full text-[#3C2925] hover:text-[#3C2925] border border-[#3C2925] hover:bg-[#3C2925] focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-[#3C2925] dark:text-[#3C2925] dark:hover:text-white dark:hover:bg-[#3C2925] dark:focus:ring-[#3C2925];
 }
 
-/*
-.button-custom {
-  @apply inline-flex w-full items-center justify-center  rounded-lg tracking-wide py-2.5 text-center mr-2 mb-2  bg-[#3C2925] px-5 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-[#3C2925] hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-[#3C2925] focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-[#3C2925] active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-[#3C2925] dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-[#3C2925] dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-[#3C2925] dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-[#3C2925] dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)];
-}*/
+.custom-file-input {
+  @apply cursor-pointer inline-block text-neutral-200 bg-zinc-900 py-2 px-4 rounded-md;
+}
+
+#choose-file {
+  @apply px-4 py-2 bg-zinc-900 text-white rounded-md;
+}
+
+#custom-text {
+  @apply ml-5 text-zinc-900;
+}
+
+.section-product {
+  @apply bg-neutral-100 py-12 sm:py-16;
+}
+
+.article-card {
+  @apply grid bg-white rounded-lg;
+}
+
+.button-custom-card {
+  @apply inline-flex ml-4 w-10/12 items-center justify-center  rounded-lg tracking-wide py-2.5 text-center mr-2 mb-2  bg-neutral-800 px-5 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)];
+}
+
+.cart-button {
+  @apply w-full text-neutral-50 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-neutral-50 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800;
+}
+
+img {
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.button-home-page {
+  @apply inline-flex w-7/12 mt-5 items-center justify-center  rounded-lg tracking-wide py-2.5 text-center mr-2 mb-2  bg-neutral-800 px-5 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)];
+}
 
 .custom-file-input {
   @apply cursor-pointer inline-block text-white bg-[#3C2925] py-2 px-4 rounded-md;
 }
-
-/*
-.hidden-file {
-  @apply hidden;
-}*/
 
 #choose-file {
   @apply px-4 py-2 bg-[#3C2925] text-white rounded-md;

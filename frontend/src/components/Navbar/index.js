@@ -6,6 +6,7 @@ import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import { usePathname, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import CartModal from "../CartModal";
 
 function NavItems({ isModalView = false, isAdminView, router }) {
   return (
@@ -62,16 +63,12 @@ export default function Navbar() {
 
   console.log(pathName);
 
-  console.log(currentUpdatedDog, 'navbar');
-  
+  console.log(currentUpdatedDog, "navbar");
+
   useEffect(() => {
-    if (
-      pathName !== '/admin-view/add-dog' &&
-      currentUpdatedDog !== null
-    )
+    if (pathName !== "/admin-view/add-dog" && currentUpdatedDog !== null)
       setCurrentUpdatedDog(null);
   }, [pathName]);
-
 
   function handleLogout() {
     setIsAuthUser(false);
@@ -98,8 +95,18 @@ export default function Navbar() {
           <div className="flex md:order-2 gap-2">
             {!isAdminView && isAuthUser ? (
               <Fragment>
-                <button className={"button-navbar"}>Account</button>
-                <button className={"button-navbar"}>Favorites</button>
+                <button
+                  className={"button-navbar"}
+                  onClick={() => router.push("/account")}
+                >
+                  Account
+                </button>
+                <button
+                  className={"button-navbar"}
+                  onClick={() => router.push("/cart")}
+                >
+                  Favorites
+                </button>
               </Fragment>
             ) : null}
             {user?.role === "admin" ? (
@@ -158,20 +165,20 @@ export default function Navbar() {
           <NavItems router={router} isAdminView={isAdminView} />
         </div>
       </nav>
-      {
-        <CommonModal
-          showModalTitle={false}
-          mainContent={
-            <NavItems
-              router={router}
-              isModalView={true}
-              isAdminView={isAdminView}
-            />
-          }
-          show={showNavModal}
-          setShow={setShowNavModal}
-        />
-      }
+
+      <CommonModal
+        showModalTitle={false}
+        mainContent={
+          <NavItems
+            router={router}
+            isModalView={true}
+            isAdminView={isAdminView}
+          />
+        }
+        show={showNavModal}
+        setShow={setShowNavModal}
+      />
+      {showCartModal && <CartModal />}
     </>
   );
 }

@@ -4,7 +4,7 @@ import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import { usePathname, useRouter } from "next/navigation";
 import { GlobalContext } from "@/context";
 import { useContext } from "react";
-//import { addToCart } from '@/services/cart';
+import { addToCart } from "@/services/cart";
 import { deleteADog } from "@/services/dog";
 import { toast } from "react-toastify";
 
@@ -15,8 +15,9 @@ export default function DogButton({ item }) {
     setCurrentUpdatedDog,
     setComponentLevelLoader,
     componentLevelLoader,
-    //user,
-    //setShowCartModal,
+    user,
+    showCartModal,
+    setShowCartModal,
   } = useContext(GlobalContext);
   const router = useRouter();
 
@@ -39,7 +40,7 @@ export default function DogButton({ item }) {
       setComponentLevelLoader({ loading: false, id: "" });
     }
   }
-  /*
+
   async function handleAddToCart(getItem) {
     setComponentLevelLoader({ loading: true, id: getItem._id });
 
@@ -59,7 +60,7 @@ export default function DogButton({ item }) {
     }
     console.log(res);
   }
-*/
+
   return isAdminView ? (
     <>
       <button
@@ -67,21 +68,13 @@ export default function DogButton({ item }) {
           setCurrentUpdatedDog(item);
           router.push("/admin-view/add-dog");
         }}
-        className="mt-1.5 flex w-full justify-center px-5 py-2 text-xs font-semibold tracking-wide text-white"
-        style={{
-          background: "#7A001A",
-          borderRadius: 6,
-        }}
+        className="button-custom-card"
       >
         Update
       </button>
       <button
         onClick={() => handleDeleteDog(item)}
-        className="mt-1.5 flex w-full justify-center px-5 py-2 text-xs font-semibold tracking-wide text-white"
-        style={{
-          background: "#7A001A",
-          borderRadius: 6,
-        }}
+        className="button-custom-card"
       >
         {componentLevelLoader &&
         componentLevelLoader.loading &&
@@ -92,20 +85,27 @@ export default function DogButton({ item }) {
             loading={componentLevelLoader && componentLevelLoader.loading}
           />
         ) : (
-          "DELETE"
+          "Delete"
         )}
       </button>
     </>
   ) : (
     <>
       <button
-        className="mt-1.5 flex w-full justify-center px-5 py-3 text-xs font-medium tracking-wide text-white"
-        style={{
-          background: "#7A001A",
-          borderRadius: 6,
-        }}
+        onClick={() => handleAddToCart(item)}
+        className="button-custom-card"
       >
-        Add To Cart
+        {componentLevelLoader &&
+        componentLevelLoader.loading &&
+        item._id === componentLevelLoader.id ? (
+          <ComponentLevelLoader
+            text={"Adding to cart"}
+            color={"#ffffff"}
+            loading={componentLevelLoader && componentLevelLoader.loading}
+          />
+        ) : (
+          " Add To Card"
+        )}
       </button>
     </>
   );

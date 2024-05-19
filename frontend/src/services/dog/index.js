@@ -21,9 +21,9 @@ export const addNewDog = async (formData) => {
 
 export const getAllAdminDogs = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/admin/all-dogs', {
-      method: 'GET',
-      cache: 'no-store',
+    const res = await fetch("http://localhost:3000/api/admin/all-dogs", {
+      method: "GET",
+      cache: "no-store",
     });
 
     const data = await res.json();
@@ -36,11 +36,11 @@ export const getAllAdminDogs = async () => {
 
 export const updateADog = async (formData) => {
   try {
-    const res = await fetch('/api/admin/update-dog', {
-      method: 'PUT',
+    const res = await fetch("/api/admin/update-dog", {
+      method: "PUT",
       headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        "content-type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
 
       body: JSON.stringify(formData),
@@ -57,9 +57,9 @@ export const updateADog = async (formData) => {
 export const deleteADog = async (id) => {
   try {
     const res = await fetch(`/api/admin/delete-dog?id=${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
 
@@ -71,13 +71,13 @@ export const deleteADog = async (id) => {
   }
 };
 
-export const dogByCategory = async (id) => {
+export const dogByGender = async (id) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/admin/dog-by-category?id=${id}`,
+      `http://localhost:3000/api/admin/dog-by-gender?id=${id}`,
       {
-        method: 'GET',
-        cache: 'no-store',
+        method: "GET",
+        cache: "no-store",
       }
     );
 

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import Notification from '@/components/Notification';
-import { GlobalContext } from '@/context';
-import { getAllAdoptionsForUser } from '@/services/adoption';
-import { useRouter } from 'next/navigation';
-import { useContext, useEffect } from 'react';
-import { PulseLoader } from 'react-spinners';
-import { toast } from 'react-toastify';
+import Notification from "@/components/Notification";
+import { GlobalContext } from "@/context";
+import { getAllAdoptionsForUser } from "@/services/adoption";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
+import { PulseLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 export default function Adoptions() {
   const {
@@ -48,7 +48,7 @@ export default function Adoptions() {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
         <PulseLoader
-          color={'#000000'}
+          color={"#000000"}
           loading={pageLevelLoader}
           size={30}
           data-testid="loader"
@@ -85,15 +85,15 @@ export default function Adoptions() {
                           </div>
                         </div>
                         <div className="flex gap-2">
-                          {item.orderItems.map((orderItem, index) => (
+                          {item.adoptionItems.map((adoptionItem, index) => (
                             <div key={index} className="shrink-0">
                               <img
                                 alt="Adoption Item"
                                 className="h-24 w-24 max-w-full rounded-lg object-cover"
                                 src={
-                                  orderItem &&
-                                  orderItem.dog &&
-                                  orderItem.dog.imageUrl
+                                  adoptionItem &&
+                                  adoptionItem.dog &&
+                                  adoptionItem.dog.imageUrl
                                 }
                               />
                             </div>
@@ -102,11 +102,13 @@ export default function Adoptions() {
                         <div className="flex gap-5">
                           <button className="disabled:opacity-50 mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
                             {item.isProcessing
-                              ? 'Adoption is Processing'
-                              : 'Adoption is delivered'}
+                              ? "Adoption is Processing"
+                              : "Adoption is delivered"}
                           </button>
                           <button
-                            onClick={() => router.push(`/adoptions/${item._id}`)}
+                            onClick={() =>
+                              router.push(`/adoptions/${item._id}`)
+                            }
                             className=" mt-5 mr-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                           >
                             View Adoption Details

@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import { GlobalContext } from '@/context';
-import { getOrderDetails } from '@/services/order';
-import { useParams, useRouter } from 'next/navigation';
-import { useContext, useEffect } from 'react';
-import { PulseLoader } from 'react-spinners';
+import { GlobalContext } from "@/context";
+import { getAdoptionDetails } from "@/services/adoption";
+import { useParams, useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
+import { PulseLoader } from "react-spinners";
 
-export default function OrderDetails() {
+export default function AdoptionDetails() {
   const {
     pageLevelLoader,
     setPageLevelLoader,
-    orderDetails,
-    setOrderDetails,
+    adoptionDetails,
+    setAdoptionDetails,
     user,
   } = useContext(GlobalContext);
 
   const params = useParams();
   const router = useRouter();
 
-  async function extractOrderDetails() {
+  async function extractAdoptionDetails() {
     setPageLevelLoader(true);
 
-    const res = await getOrderDetails(params['order-details']);
+    const res = await getAdoptionrDetails(params["adoption-details"]);
 
     if (res.success) {
       setPageLevelLoader(false);
-      setOrderDetails(res.data);
+      setAdoptionDetails(res.data);
     } else {
       setPageLevelLoader(false);
     }
@@ -34,14 +34,14 @@ export default function OrderDetails() {
   }
 
   useEffect(() => {
-    extractOrderDetails();
+    extractAdoptionDetails();
   }, []);
 
   if (pageLevelLoader) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
         <PulseLoader
-          color={'#000000'}
+          color={"#000000"}
           loading={pageLevelLoader}
           size={30}
           data-testid="loader"
@@ -54,26 +54,26 @@ export default function OrderDetails() {
     <div className="py-14 px-4 md:px-6">
       <div className="flex justify-start items-start space-y-2 flex-col">
         <h1 className="text-3xl lg:text-4xl font-bold leading-7 lg:leading-9 text-gray-900">
-          Order #{orderDetails && orderDetails._id}
+          Adoption #{adoptionDetails && adoptionDetails._id}
         </h1>
         <p className="text-base font-medium leadong-6 text-gray-600">
-          {orderDetails &&
-            orderDetails.createdAt &&
-            orderDetails.createdAt.split('T')[0]}{' '}
-          |{' '}
-          {orderDetails &&
-            orderDetails.createdAt &&
-            orderDetails.createdAt.split('T')[1].split('.')[0]}
+          {adoptionDetails &&
+            adoptionDetails.createdAt &&
+            adoptionDetails.createdAt.split("T")[0]}{" "}
+          |{" "}
+          {adoptionDetails &&
+            adoptionDetails.createdAt &&
+            adoptionDetails.createdAt.split("T")[1].split(".")[0]}
         </p>
       </div>
       <div className="mt-10 flex flex-col justify-center xl:flex-row items-stretch w-full xl:space-x-8 md:space-y-6 xl:space-y-0">
         <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
           <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:p-6 xl:p-8 w-full">
-            <p className="font-bol text-lg ">Your order summary</p>
-            {orderDetails &&
-            orderDetails.orderItems &&
-            orderDetails.orderItems.length
-              ? orderDetails.orderItems.map((item) => (
+            <p className="font-bol text-lg ">Your adoption summary</p>
+            {adoptionDetails &&
+            adoptionDetails.adoptionItems &&
+            adoptionDetails.adoptionItems.length
+              ? adoptionDetails.adoptionItems.map((item) => (
                   <div
                     key={item._id}
                     className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full"
@@ -109,7 +109,7 @@ export default function OrderDetails() {
                 <div className="flex justify-between w-full">
                   <p className="text-base leading-5 text-gray-800">Subtotal</p>
                   <p className="text-base leading-5 text-gray-900">
-                    ${orderDetails && orderDetails.totalPrice}
+                    ${adoptionDetails && adoptionDetails.totalPrice}
                   </p>
                 </div>
                 <div className="flex justify-between w-full">
@@ -119,7 +119,7 @@ export default function OrderDetails() {
                 <div className="flex justify-between w-full">
                   <p className="text-base leading-5 text-gray-800">Subtotal</p>
                   <p className="text-base leading-5 text-gray-900">
-                    ${orderDetails && orderDetails.totalPrice}
+                    ${adoptionDetails && adoptionDetails.totalPrice}
                   </p>
                 </div>
               </div>
@@ -147,17 +147,21 @@ export default function OrderDetails() {
               <div className="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8">
                 <p>Shipping Address</p>
                 <p>
-                  Address :{' '}
-                  {orderDetails && orderDetails.shippingAddress.address}
-                </p>
-                <p>City :{orderDetails && orderDetails.shippingAddress.city}</p>
-                <p>
-                  Country :{' '}
-                  {orderDetails && orderDetails.shippingAddress.country}
+                  Address :{" "}
+                  {adoptionDetails && adoptionDetails.shippingAddress.address}
                 </p>
                 <p>
-                  Postal Code :{' '}
-                  {orderDetails && orderDetails.shippingAddress.postalCode}
+                  City :
+                  {adoptionDetails && adoptionDetails.shippingAddress.city}
+                </p>
+                <p>
+                  Country :{" "}
+                  {adoptionDetails && adoptionDetails.shippingAddress.country}
+                </p>
+                <p>
+                  Postal Code :{" "}
+                  {adoptionDetails &&
+                    adoptionDetails.shippingAddress.postalCode}
                 </p>
               </div>
             </div>
