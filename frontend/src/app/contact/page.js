@@ -12,14 +12,14 @@ import { useContext, useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
-export default function Checkout() {
+export default function Contact() {
   const {
     cartItems,
     user,
     addresses,
     setAddresses,
-    checkoutFormData,
-    setCheckoutFormData,
+    contactFormData,
+    setContactFormData,
   } = useContext(GlobalContext);
 
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -58,13 +58,13 @@ export default function Checkout() {
         cartItems.length > 0
       ) {
         setIsAdoptionProcessing(true);
-        const getCheckoutFormData = JSON.parse(
-          localStorage.getItem("checkoutFormData")
+        const getContactFormData = JSON.parse(
+          localStorage.getItem("contactFormData")
         );
 
-        const createFinalCheckoutFormData = {
+        const createFinalContactFormData = {
           user: user?._id,
-          shippingAddress: getCheckoutFormData.shippingAddress,
+          shippingAddress: getContactFormData.shippingAddress,
           adoptionItems: cartItems.map((item) => ({
             qty: 1,
             dog: item.dogID,
@@ -79,19 +79,19 @@ export default function Checkout() {
           paidAt: new Date(),
         };
 
-        const res = await createNewAdoption(createFinalCheckoutFormData);
+        const res = await createNewAdoption(createFinalContactFormData);
 
         if (res.success) {
           setIsAdoptionProcessing(false);
           setAdoptionSuccess(true);
           toast.success(res.message, {
-            position: toast.POSITION.TOP_RIGHT,
+            position: "top-right",
           });
         } else {
           setIsAdoptionProcessing(false);
           setAdoptionSuccess(false);
           toast.error(res.message, {
-            position: toast.POSITION.TOP_RIGHT,
+            position: "top-right",
           });
         }
       }
@@ -103,8 +103,8 @@ export default function Checkout() {
   function handleSelectedAddress(getAddress) {
     if (getAddress._id === selectedAddress) {
       setSelectedAddress(null);
-      setCheckoutFormData({
-        ...checkoutFormData,
+      setContactFormData({
+        ...contactFormData,
         shippingAddress: {},
       });
 
@@ -112,10 +112,10 @@ export default function Checkout() {
     }
 
     setSelectedAddress(getAddress._id);
-    setCheckoutFormData({
-      ...checkoutFormData,
+    setContactFormData({
+      ...contactFormData,
       shippingAddress: {
-        ...checkoutFormData.shippingAddress,
+        ...contactFormData.shippingAddress,
         fullName: getAddress.fullName,
         city: getAddress.city,
         country: getAddress.country,
@@ -125,7 +125,7 @@ export default function Checkout() {
     });
   }
 
-  async function handleCheckout() {
+  async function handleContact() {
     const stripe = await stripePromise;
 
     const createLineItems = cartItems.map((item) => ({
@@ -143,16 +143,16 @@ export default function Checkout() {
     const res = await callStripeSession(createLineItems);
     setIsAdoptionProcessing(true);
     localStorage.setItem("stripe", true);
-    localStorage.setItem("checkoutFormData", JSON.stringify(checkoutFormData));
+    localStorage.setItem("contactFormData", JSON.stringify(contactFormData));
 
-    const { error } = await stripe.redirectToCheckout({
+    const { error } = await stripe.redirectToContact({
       sessionId: res.id,
     });
 
     console.log(error);
   }
 
-  console.log(checkoutFormData);
+  console.log(contactFormData);
 
   useEffect(() => {
     if (adoptionSuccess) {
@@ -297,12 +297,12 @@ export default function Checkout() {
               <button
                 disabled={
                   (cartItems && cartItems.length === 0) ||
-                  Object.keys(checkoutFormData.shippingAddress).length === 0
+                  Object.keys(contactFormData.shippingAddress).length === 0
                 }
-                onClick={handleCheckout}
+                onClick={handleContact}
                 className="disabled:opacity-50 rounded-lg mt-5 mr-5 w-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
               >
-                Checkout
+                Contact
               </button>
             </div>
           </div>

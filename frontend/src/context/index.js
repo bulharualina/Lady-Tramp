@@ -6,7 +6,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const GlobalContext = createContext(null);
 
-export const initialCheckoutFormData = {
+export const initialContactFormData = {
   shippingAddress: {},
   paymentMethod: "",
   totalPrice: 0,
@@ -17,7 +17,7 @@ export const initialCheckoutFormData = {
 
 const protectedRoutes = [
   "cart",
-  "checkout",
+  "contact",
   "account",
   "adoptions",
   "admin-view",
@@ -50,8 +50,8 @@ export default function GlobalState({ children }) {
     address: "",
   });
 
-  const [checkoutFormData, setCheckoutFormData] = useState(
-    initialCheckoutFormData
+  const [contactFormData, setContactFormData] = useState(
+    initialContactFormData
   );
 
   const [allAdoptionsForUser, setAllAdoptionsForUser] = useState([]);
@@ -121,8 +121,8 @@ export default function GlobalState({ children }) {
         setAddresses,
         addressFormData,
         setAddressFormData,
-        checkoutFormData,
-        setCheckoutFormData,
+        contactFormData,
+        setContactFormData,
         allAdoptionsForUser,
         setAllAdoptionsForUser,
         adoptionDetails,

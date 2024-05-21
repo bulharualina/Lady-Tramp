@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import InputComponent from '@/components/FormElements/InputComponent';
-import ComponentLevelLoader from '@/components/Loader/componentlevel';
-import Notification from '@/components/Notification';
-import { GlobalContext } from '@/context';
+import InputComponent from "@/components/FormElements/InputComponent";
+import ComponentLevelLoader from "@/components/Loader/componentlevel";
+import Notification from "@/components/Notification";
+import { GlobalContext } from "@/context";
 import {
   addNewAddress,
   deleteAddress,
   fetchAllAddresses,
   updateAddress,
-} from '@/services/address';
-import { addNewAddressFormControls } from '@/utils';
-import { useRouter } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
-import { PulseLoader } from 'react-spinners';
-import { toast } from 'react-toastify';
+} from "@/services/address";
+import { addNewAddressFormControls } from "@/utils";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { PulseLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 export default function Account() {
   const {
@@ -45,7 +45,7 @@ export default function Account() {
   }
 
   async function handleAddOrUpdateAddress() {
-    setComponentLevelLoader({ loading: true, id: '' });
+    setComponentLevelLoader({ loading: true, id: "" });
     const res =
       currentEditedAddressId !== null
         ? await updateAddress({
@@ -57,30 +57,30 @@ export default function Account() {
     console.log(res);
 
     if (res.success) {
-      setComponentLevelLoader({ loading: false, id: '' });
+      setComponentLevelLoader({ loading: false, id: "" });
       toast.success(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
       setAddressFormData({
-        fullName: '',
-        city: '',
-        country: '',
-        postalCode: '',
-        address: '',
+        fullName: "",
+        city: "",
+        country: "",
+        postalCode: "",
+        address: "",
       });
       extractAllAddresses();
       setCurrentEditedAddressId(null);
     } else {
-      setComponentLevelLoader({ loading: false, id: '' });
+      setComponentLevelLoader({ loading: false, id: "" });
       toast.error(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
       setAddressFormData({
-        fullName: '',
-        city: '',
-        country: '',
-        postalCode: '',
-        address: '',
+        fullName: "",
+        city: "",
+        country: "",
+        postalCode: "",
+        address: "",
       });
     }
   }
@@ -103,17 +103,17 @@ export default function Account() {
     const res = await deleteAddress(getCurrentAddressID);
 
     if (res.success) {
-      setComponentLevelLoader({ loading: false, id: '' });
+      setComponentLevelLoader({ loading: false, id: "" });
 
       toast.success(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
       extractAllAddresses();
     } else {
-      setComponentLevelLoader({ loading: false, id: '' });
+      setComponentLevelLoader({ loading: false, id: "" });
 
       toast.error(res.message, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",
       });
     }
   }
@@ -137,21 +137,12 @@ export default function Account() {
               <p>{user?.email}</p>
               <p>{user?.role}</p>
             </div>
-            <button
-              onClick={() => router.push('/adoptions')}
-              className="mt-5  inline-block text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
-              style={{
-                background: '#7A001A',
-                borderRadius: 6,
-              }}
-            >
-              View Your Adoptions
-            </button>
+
             <div className="mt-6">
               <h1 className="font-bold text-lg">Your Addresses :</h1>
               {pageLevelLoader ? (
                 <PulseLoader
-                  color={'#000000'}
+                  color={"#000000"}
                   loading={pageLevelLoader}
                   size={15}
                   data-testid="loader"
@@ -170,7 +161,7 @@ export default function Account() {
                           onClick={() => handleUpdateAddress(item)}
                           className="mt-5 mr-5 inline-block text-white px-5 py-3 text-xs font-medium tracking-wide"
                           style={{
-                            background: '#7A001A',
+                            background: "#7A001A",
                             borderRadius: 6,
                           }}
                         >
@@ -180,7 +171,7 @@ export default function Account() {
                           onClick={() => handleDelete(item._id)}
                           className="mt-5  inline-block text-white px-5 py-3 text-xs font-medium tracking-wide"
                           style={{
-                            background: '#7A001A',
+                            background: "#7A001A",
                             borderRadius: 6,
                           }}
                         >
@@ -188,15 +179,15 @@ export default function Account() {
                           componentLevelLoader.loading &&
                           componentLevelLoader.id === item._id ? (
                             <ComponentLevelLoader
-                              text={'Deleting'}
-                              color={'#ffffff'}
+                              text={"Deleting"}
+                              color={"#ffffff"}
                               loading={
                                 componentLevelLoader &&
                                 componentLevelLoader.loading
                               }
                             />
                           ) : (
-                            'Delete'
+                            "Delete"
                           )}
                         </button>
                       </div>
@@ -212,11 +203,11 @@ export default function Account() {
                 onClick={() => setShowAddressForm(!showAddressForm)}
                 className="mt-5  inline-block text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                 style={{
-                  background: '#7A001A',
+                  background: "#7A001A",
                   borderRadius: 6,
                 }}
               >
-                {showAddressForm ? 'Hide Address Form' : 'Add New Address'}
+                {showAddressForm ? "Hide Address Form" : "Add New Address"}
               </button>
             </div>
             {showAddressForm ? (
@@ -241,20 +232,20 @@ export default function Account() {
                   onClick={handleAddOrUpdateAddress}
                   className="mt-5  inline-block text-white px-5 py-3 text-xs font-bold uppercase tracking-wide"
                   style={{
-                    background: '#7A001A',
+                    background: "#7A001A",
                     borderRadius: 6,
                   }}
                 >
                   {componentLevelLoader && componentLevelLoader.loading ? (
                     <ComponentLevelLoader
-                      text={'Saving'}
-                      color={'#ffffff'}
+                      text={"Saving"}
+                      color={"#ffffff"}
                       loading={
                         componentLevelLoader && componentLevelLoader.loading
                       }
                     />
                   ) : (
-                    'Save'
+                    "Save"
                   )}
                 </button>
               </div>

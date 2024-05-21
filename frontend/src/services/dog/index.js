@@ -88,3 +88,21 @@ export const dogByGender = async (id) => {
     console.log(e);
   }
 };
+
+export const dogById = async (id) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/admin/dog-by-id?id=${id}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    const data = await res.json();
+
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};

@@ -114,11 +114,11 @@ export default function CommonCart({
                 </div>
                 <div className="mt-5 text-center">
                   <button
-                    onClick={() => router.push("/checkout")}
+                    onClick={() => router.push("/contact")}
                     disabled={cartItems && cartItems.length === 0}
                     className="button-custom"
                   >
-                    Checkout
+                    Contact
                   </button>
                 </div>
               </div>

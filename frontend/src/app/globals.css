@@ -134,3 +134,55 @@ img {
 #custom-text {
   @apply ml-5 text-white;
 }
+
+.home-bg-img {
+  width: 100%;
+  height: 100vh; /* Make sure it takes full viewport height */
+  background-color: #ffffff;
+  background-image: url("./images/img2.jpg"); /* Ensure the path is correct */
+  background-size: cover; /* This will cover the entire div */
+  background-position: center; /* This will center the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-home {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.btn-home:hover {
+  color: #000000; /* Change text color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+.social-icons a {
+  padding: 10px;
+  margin: 10px;
+}
+
+.footer-nav {
+  margin: 30px 0;
+}
+.footer-nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-nav ul li a {
+  color: #ffffff;
+  margin: 20px;
+  text-decoration: none;
+  font-size: 1.3em;
+  transition: 0.5s;
+}

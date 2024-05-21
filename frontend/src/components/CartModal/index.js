@@ -157,17 +157,21 @@ export default function CartModal() {
           <button
             type="button"
             onClick={() => {
-              router.push("/checkout");
+              router.push("/contact");
 
               setShowCartModal(false);
             }}
             className={"cart-button"}
           >
-            Checkout
+            Contact
           </button>
           <div className="mt-6 flex justify-center text-center text-sm text-zinc-200">
-            <button type="button" className="font-medium text-grey">
-              Continue Shopping
+            <button
+              type="button"
+              className="font-medium text-grey"
+              onClick={() => router.push("../app/adoptions")}
+            >
+              Continue adopt
               <span aria-hidden="true"> &rarr;</span>
             </button>
           </div>

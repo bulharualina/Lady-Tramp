@@ -4,6 +4,7 @@ import { GlobalContext } from "@/context";
 import { getAllAdminDogs } from "@/services/dog";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default function Home() {
   const { isAuthUser } = useContext(GlobalContext);
@@ -26,57 +27,152 @@ export default function Home() {
   console.log(dogs);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-zinc-900">
-      <section className="">
-        <div className=" bg-zinc-200 rounded-lg grid max-w-screen-xl px-4 py-8 mx-suto  lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"></div>
+    <main className="flex flex-col justify-between">
+      {/* Hero Section */}
+      <div className="home-bg-img w-full h-screen flex items-center justify-center text-center">
+        <div className="p-8">
+          <h1 className="text-7xl font-bold text-white mb-4">
+            Welcome to Lady & Tramp
+          </h1>
+          <p className="text-2xl text-white mb-6">
+            Begin a heartwarming journey by giving a forever home to a friend in
+            need. Adopt a loyal companion today.
+          </p>
+        </div>
+      </div>
 
-        <div className="max-w-screen-xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8 mt-10 rounded-lg">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-            <div className="grid p-6  rounded-lg place-content-center sm:p-8">
-              <div className="max-w-md mx-auto text-center lg:text-left">
-                <button
-                  onClick={() => router.push("/dog/listing/all-dogs")}
-                  className="button-navbar"
-                >
-                  Adopt
-                </button>
-              </div>
+      {/* About Us Section */}
+      <section id="about-us" className="py-16 text-center">
+        <h2 className="text-3xl font-bold mb-4">About Us</h2>
+        <p className="mb-6 px-4">
+          We are a shelter dedicated to rescuing and finding loving homes for
+          dogs. Our mission is to give abandoned dogs a second chance and
+          promote responsible adoption.
+        </p>
+      </section>
+
+      {/* Available Dogs Section */}
+      <section className="py-16 text-center items-stretch bg-gray-100">
+        <h2 className="text-3xl font-bold mb-4">Dogs Available for Adoption</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+          {dogs.slice(0, 3).map((dog) => (
+            <div key={dog._id} className="bg-white p-4 rounded-lg shadow-md">
+              <img
+                src={dog.imageUrl}
+                alt={dog.name}
+                className="w-full h-40 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-xl font-bold">{dog.name}</h3>
+              <button
+                onClick={() => router.push(`/dog/${dog._id}`)}
+                className="btn-secondary mt-2"
+              >
+                Details
+              </button>
             </div>
-            <div className="lg:col-span-2 lg:py-8">
-              <ul className="grid grid-cols-2 gap-4 rounded-lg">
-                {dogs && dogs.length
-                  ? dogs
-                      .filter((item) => item.onSale === "yes")
-                      .splice(0, 2)
-                      .map((dogItem) => (
-                        <li
-                          onClick={() => router.push(`/dog/${dogItem._id}`)}
-                          className="cursor-pointer"
-                          key={dogItem._id}
-                        >
-                          <div>
-                            <img
-                              src={dogItem.imageUrl}
-                              alt="Sale Dod Item"
-                              className="object-cover w-full rounded aspect-square"
-                            />
-                          </div>
-                          <div className="mt-3">
-                            <h3 className="font-medium text-zinc-100">
-                              {dogItem.name}
-                            </h3>
-                            <p className="mt-1 text-sm text-zinc-100">
-                              {dogItem.gender}
-                            </p>
-                          </div>
-                        </li>
-                      ))
-                  : null}
-              </ul>
-            </div>
-          </div>
+          ))}
+        </div>
+        <button
+          onClick={() => router.push("/adoptions")}
+          className="mt-6 btn-primary"
+        >
+          View All Dogs
+        </button>
+      </section>
+
+      {/* Success Stories Section */}
+      <section className="py-16 text-center">
+        <h2 className="text-3xl font-bold mb-4">Our Success Stories</h2>
+        <div className="carousel">
+          {/* Add carousel with testimonials here */}
         </div>
       </section>
+
+      {/* Volunteering and Donations Section */}
+      <section className="py-16 text-center bg-gray-100">
+        <h2 className="text-3xl font-bold mb-4">How You Can Help</h2>
+        <p className="mb-6 px-4">You can donate to support our activities.</p>
+        <div className="flex justify-center space-x-4">
+          <button
+            onClick={() => router.push("/donate")}
+            className="btn-primary"
+          >
+            Donate Now
+          </button>
+        </div>
+      </section>
+
+      {/* Blog or News Section */}
+      <section className="py-16 text-center">
+        <h2 className="text-3xl font-bold mb-4">Latest News</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+          {/* Add recent articles here */}
+        </div>
+        <button
+          onClick={() => router.push("/news")}
+          className="mt-6 btn-primary"
+        >
+          Read More
+        </button>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 bg-gray-800 text-white text-center">
+        <div className="container mx-auto px-4 w-full">
+          <div className="social-icons mb-4">
+            <a
+              href="https://www.facebook.com"
+              className="mx-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a
+              href="https://www.instagram.com"
+              className="mx-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.twitter.com"
+              className="mx-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
+          <div className="footer-nav mb-4">
+            <ul>
+              <li>
+                <a href="/" className="mx-2">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about-us" className="mx-2">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="mx-2">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="mb-4">
+            <p>Address: St Example, Timisoara</p>
+            <p>Phone: 0123-456-789</p>
+            <p>Email: contact@ladytramp.com</p>
+          </div>
+
+          <p className="mt-4">&copy; 2024 Lady & Tramp. All rights reserved.</p>
+        </div>
+      </footer>
     </main>
   );
 }
