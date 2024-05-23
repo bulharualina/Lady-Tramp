@@ -80,9 +80,9 @@ export default function Home() {
         </button>
       </section>
 
-      {/* Success Stories Section */}
+      {/* Our mission Section*/}
       <section className="py-16 text-center">
-        <h2 className="text-3xl font-bold mb-4">Our Success Stories</h2>
+        <h2 className="text-3xl font-bold mb-4">OUR MISSION</h2>
         <div className="carousel">
           {/* Add carousel with testimonials here */}
         </div>

@@ -156,10 +156,10 @@ export default function Donation() {
 
   return (
     <div>
-      <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+      <div className=" donate-bg-img grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+        <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 justify-items-start rounded-md">
           <p className="text-xl font-medium">Donation Details</p>
-          <p className="text-gray-400 font-bold">
+          <p className="text-green-700 font-bold">
             Complete your donation by filling in the details below
           </p>
           <div className="w-full mt-6 space-y-6">
@@ -186,7 +186,7 @@ export default function Donation() {
               <button
                 disabled={!donationAmount}
                 onClick={handleCheckout}
-                className="disabled:opacity-50 rounded-lg mt-5 mr-5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                className="disabled:opacity-50 rounded-lg mt-5 mr-5 w-full inline-block bg-green-700 text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
               >
                 Donate
               </button>
