@@ -10,6 +10,9 @@ export default function CommonCart({
 }) {
   const router = useRouter();
 
+  // Debugging: Log cart items to check their structure
+  console.log("cartItems:", cartItems);
+
   return (
     <section className="h-screen bg-zinc-900">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">

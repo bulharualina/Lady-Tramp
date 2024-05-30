@@ -1,3 +1,86 @@
-export default function News() {
-  return <div className="text-black">Favorites</div>;
+"use client";
+
+import CommonCart from "@/components/CommonCart";
+import { GlobalContext } from "@/context";
+import { deleteFromCart, getAllCartItems } from "@/services/cart";
+import { useContext, useEffect } from "react";
+import { PulseLoader } from "react-spinners";
+import { toast } from "react-toastify";
+
+export default function Cart() {
+  const {
+    user,
+    setCartItems,
+    cartItems,
+    pageLevelLoader,
+    setPageLevelLoader,
+    setComponentLevelLoader,
+    componentLevelLoader,
+  } = useContext(GlobalContext);
+
+  async function extractAllCartItems() {
+    setPageLevelLoader(true);
+    const res = await getAllCartItems(user?._id);
+
+    if (res.success) {
+      const updatedData =
+        res.data && res.data.length
+          ? res.data.map((item) => ({
+              ...item,
+              dogID: {
+                ...item.dogID,
+              },
+            }))
+          : [];
+      setCartItems(updatedData);
+      setPageLevelLoader(false);
+      localStorage.setItem("favoriteItems", JSON.stringify(updatedData));
+    }
+
+    console.log(res);
+  }
+
+  useEffect(() => {
+    if (user !== null) extractAllCartItems();
+  }, [user]);
+
+  async function handleDeleteCartItem(getCartItemID) {
+    setComponentLevelLoader({ loading: true, id: getCartItemID });
+    const res = await deleteFromCart(getCartItemID);
+
+    if (res.success) {
+      setComponentLevelLoader({ loading: false, id: "" });
+      toast.success(res.message, {
+        position: "top-right",
+      });
+
+      extractAllCartItems();
+    } else {
+      toast.error(res.message, {
+        position: "top-right",
+      });
+      setComponentLevelLoader({ loading: false, id: getCartItemID });
+    }
+  }
+
+  if (pageLevelLoader) {
+    return (
+      <div className="w-full min-h-screen flex justify-center items-center">
+        <PulseLoader
+          color={"#000000"}
+          loading={pageLevelLoader}
+          size={30}
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <CommonCart
+      componentLevelLoader={componentLevelLoader}
+      handleDeleteCartItem={handleDeleteCartItem}
+      cartItems={cartItems}
+    />
+  );
 }

@@ -117,7 +117,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-gray-800 text-white text-center">
+      <footer className="py-8 bg-[#C67C4E] text-white text-center">
         <div className="container mx-auto px-4 w-full">
           <div className="social-icons mb-4">
             <a

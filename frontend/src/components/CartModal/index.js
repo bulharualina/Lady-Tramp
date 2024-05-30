@@ -31,15 +31,6 @@ export default function CartModal() {
               ...item,
               dogID: {
                 ...item.dogID,
-                price:
-                  item.dogID.onSale === "yes"
-                    ? parseInt(
-                        (
-                          item.dogID.price -
-                          item.dogID.price * (item.dogID.priceDrop / 100)
-                        ).toFixed(2)
-                      )
-                    : item.dogID.price,
               },
             }))
           : [];
@@ -80,7 +71,7 @@ export default function CartModal() {
       setShow={setShowCartModal}
       mainContent={
         cartItems && cartItems.length ? (
-          <ul role="list" className="-my-6 divide-y divide-gray-300">
+          <ul role="list" className="my-6 divide-y divide-gray-300">
             {cartItems.map((cartItem) => (
               <li key={cartItem._id} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -99,9 +90,6 @@ export default function CartModal() {
                         </a>
                       </h3>
                     </div>
-                    <p className="mt-1 text-sm text-zinc-300">
-                      ${cartItem && cartItem.dogID && cartItem.dogID.price}
-                    </p>
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
                     <button
@@ -132,49 +120,16 @@ export default function CartModal() {
       }
       buttonComponent={
         <Fragment>
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-zinc-200">Subtotal</p>
-            <p className="text-lg text-zinc-100 font-semibold">
-              $
-              {cartItems && cartItems.length
-                ? cartItems.reduce((total, item) => item.dogID.price + total, 0)
-                : "0"}
-            </p>
-          </div>
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-zinc-200">Shipping</p>
-            <p className="text-lg text-zinc-100 font-semibold">$0</p>
-          </div>
-          <div className="flex items-center justify-between mb-10">
-            <p className="text-sm text-zinc-200 ">Total</p>
-            <p className="text-lg text-zinc-100 font-semibold ">
-              $
-              {cartItems && cartItems.length
-                ? cartItems.reduce((total, item) => item.dogID.price + total, 0)
-                : "0"}
-            </p>
-          </div>
           <button
             type="button"
             onClick={() => {
               router.push("/contact");
-
               setShowCartModal(false);
             }}
             className={"cart-button"}
           >
             Contact
           </button>
-          <div className="mt-6 flex justify-center text-center text-sm text-zinc-200">
-            <button
-              type="button"
-              className="font-medium text-grey"
-              onClick={() => router.push("../app/adoptions")}
-            >
-              Continue adopt
-              <span aria-hidden="true"> &rarr;</span>
-            </button>
-          </div>
         </Fragment>
       }
     />
