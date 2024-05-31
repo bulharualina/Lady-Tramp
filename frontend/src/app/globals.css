@@ -297,53 +297,57 @@ img {
 }
 
 .bg-white {
-  background-color: rgba(255, 255, 255, 0.5); /* Background alb cu 80% opacitate */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Background alb cu 80% opacitate */
 }
 
 .flex.flex-col.items-center.justify-start.pt-10.pr-10.pb-10.pl-10.bg-white.shadow-2xl.rounded-xl.relative.z-10 {
-  background-color: rgba(255, 255, 255, 0.3); /* Background alb cu 80% opacitate */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Background alb cu 80% opacitate */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* styles.css */
 
 body {
-  font-family: 'Arial', sans-serif; /* Font global */
+  font-family: "Arial", sans-serif; /* Font global */
 }
 
 input,
 select,
 button,
 label {
-  font-family: 'Arial', sans-serif; /* Font pentru formulare */
+  font-family: "Arial", sans-serif; /* Font pentru formulare */
 }
 
 /* Stiluri specifice pentru alte elemente */
 .nav-item {
-  font-family: 'Arial', sans-serif; /* Font pentru elementele de navigare */
+  font-family: "Arial", sans-serif; /* Font pentru elementele de navigare */
 }
 
 .form-label {
-  font-family: 'Arial', sans-serif; /* Font pentru etichetele de formulare */
+  font-family: "Arial", sans-serif; /* Font pentru etichetele de formulare */
 }
 
 .form-input {
-  font-family: 'Arial', sans-serif; /* Font pentru inputuri */
+  font-family: "Arial", sans-serif; /* Font pentru inputuri */
 }
 
 /* globals.css */
 .transparent-input {
   background-color: rgba(255, 255, 255, 0.5); /* Fundal semi-transparent */
-<<<<<<< HEAD
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Bordura semi-transparenta */
-  padding: 10px; /* Spa?iere interna */
-  border-radius: 5px; /* Col?uri rotunjite */
-=======
   border: 1px solid rgba(0, 0, 0, 0.2); /* Bordura semi-transparentă */
   padding: 10px; /* Spațiere internă */
   border-radius: 5px; /* Colțuri rotunjite */
->>>>>>> 193af1b896ce52e8a6c79619e9ed354f90dfcf83
-  font-family: 'Sylfaen', sans-serif; /* Fontul dorit */
+  font-family: "Sylfaen", sans-serif; /* Fontul dorit */
   font-size: 16px; /* Dimensiunea fontului */
   color: #333; /* Culoarea textului */
 }

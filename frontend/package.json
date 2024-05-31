@@ -10,14 +10,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
-<<<<<<< HEAD
-    "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
-=======
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
->>>>>>> 193af1b896ce52e8a6c79619e9ed354f90dfcf83
     "@headlessui/react": "^1.7.18",
     "@stripe/stripe-js": "^3.3.0",
     "bcryptjs": "^2.4.3",
