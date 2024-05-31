@@ -10,37 +10,39 @@ import CartModal from "../CartModal";
 
 function NavItems({ isModalView = false, isAdminView, router }) {
   return (
-    <div
-      className={`items-center justify-between w-full md:flex md:w-auto  ${
-        isModalView ? "" : "hidden"
-      }`}
-      id="nav-items"
-    >
-      <ul
-        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 ${
-          isModalView ? "border-none" : "border border-[#3C2925]"
-        } `}
+    <div className="" style={{ fontFamily: "Ink Free" }}>
+      <div
+        className={`items-center justify-between w-full md:flex md:w-auto  ${
+          isModalView ? "" : "hidden"
+        }`}
+        id="nav-items"
       >
-        {isAdminView
-          ? adminNavOptions.map((item) => (
-              <li
-                className="navbar-products"
-                key={item.id}
-                onClick={() => router.push(item.path)}
-              >
-                {item.label}
-              </li>
-            ))
-          : navOptions.map((item) => (
-              <li
-                className="navbar-products"
-                key={item.id}
-                onClick={() => router.push(item.path)}
-              >
-                {item.label}
-              </li>
-            ))}
-      </ul>
+        <ul
+          className={`flex flex-col text-xl p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 ${
+            isModalView ? "border-none" : "border border-[#3C2925]"
+          } `}
+        >
+          {isAdminView
+            ? adminNavOptions.map((item) => (
+                <li
+                  className="navbar-products"
+                  key={item.id}
+                  onClick={() => router.push(item.path)}
+                >
+                  {item.label}
+                </li>
+              ))
+            : navOptions.map((item) => (
+                <li
+                  className="navbar-products"
+                  key={item.id}
+                  onClick={() => router.push(item.path)}
+                >
+                  {item.label}
+                </li>
+              ))}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -88,7 +90,10 @@ export default function Navbar() {
             onClick={() => router.push("/")}
             className="flex items-center cursor-pointer"
           >
-            <span className="self-center text-5xl font-semibold whitespace-nowrap text-[#3C2925]" style={{ fontFamily: 'Ink Free' }}>
+            <span
+              className="self-center text-5xl font-semibold whitespace-nowrap text-[#3C2925]"
+              style={{ fontFamily: "Ink Free" }}
+            >
               Lady & Tramp
             </span>
           </div>
