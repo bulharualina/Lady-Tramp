@@ -31,7 +31,10 @@ export default function Contact() {
       className="contact-bg-img mx-auto mt-10 max-w-screen-xl px-4 sm:px-6 lg:px-8 text-center"
       style={{ marginTop: "50px", fontFamily: "Sylfaen" }}
     >
-      <div className="contact-form text-1xl" style={{ fontFamily: "Sylfaen" }}>
+      <div
+        className="contact-form text-1xl opacity-80"
+        style={{ fontFamily: "Sylfaen" }}
+      >
         <div className="text-xl" style={{ fontFamily: "Ink Free" }}>
           <h2>CONTACT US</h2>
         </div>

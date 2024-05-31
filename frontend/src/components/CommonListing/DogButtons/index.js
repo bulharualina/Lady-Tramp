@@ -75,6 +75,7 @@ export default function DogButton({ item }) {
       <button
         onClick={() => handleDeleteDog(item)}
         className="button-custom-card"
+        style={{ fontFamily: "Sylfaen" }}
       >
         {componentLevelLoader &&
         componentLevelLoader.loading &&

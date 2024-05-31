@@ -163,6 +163,7 @@ export default function Account() {
                           style={{
                             background: "#7A001A",
                             borderRadius: 6,
+                            fontFamily: "Sylfaen",
                           }}
                         >
                           Update
@@ -173,6 +174,7 @@ export default function Account() {
                           style={{
                             background: "#7A001A",
                             borderRadius: 6,
+                            fontfamily: "Sylfaen",
                           }}
                         >
                           {componentLevelLoader &&

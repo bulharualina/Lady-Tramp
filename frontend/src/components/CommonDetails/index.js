@@ -62,7 +62,8 @@ export default function CommonDetails({ item }) {
               <button
                 type="button"
                 onClick={() => handleAddToCart(item)}
-                className="button-custom"
+                className="button-custom "
+                style={{ fontFamily: "Sylfaen" }}
               >
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader

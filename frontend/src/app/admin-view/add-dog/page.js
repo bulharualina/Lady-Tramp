@@ -170,7 +170,7 @@ export default function AdminAddNewDog() {
                   />
                 ) : null
               )}
-              <button onClick={handleAddDog} className="button-custom">
+              <button onClick={handleAddDog} className="button-custom ">
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader
                     text={
