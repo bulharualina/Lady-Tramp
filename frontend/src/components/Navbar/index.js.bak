@@ -17,7 +17,7 @@ function NavItems({ isModalView = false, isAdminView, router }) {
       id="nav-items"
     >
       <ul
-        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 ${
+        className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${
           isModalView ? "border-none" : "border border-[#3C2925]"
         } `}
       >
@@ -88,11 +88,8 @@ export default function Navbar() {
             onClick={() => router.push("/")}
             className="flex items-center cursor-pointer"
           >
-            <span
-              className="self-center text-5xl font-semibold whitespace-nowrap text-[#3C2925]"
-              style={{ fontFamily: "Ink Free" }}
-            >
-              Lady & Tramp
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-[#3C2925]">
+              Lady&Tramp
             </span>
           </div>
           <div className="flex md:order-2 gap-2">
@@ -118,27 +115,27 @@ export default function Navbar() {
                   onClick={() => router.push("/")}
                   className={"button-navbar"}
                 >
-                  <i class="fa-solid fa-circle-user"></i>
+                  Client View
                 </button>
               ) : (
                 <button
                   onClick={() => router.push("/admin-view/all-dogs")}
                   className={"button-navbar"}
                 >
-                  <i class="fa-solid fa-key"></i>
+                  Admin View
                 </button>
               )
             ) : null}
             {isAuthUser ? (
               <button onClick={handleLogout} className={"button-navbar"}>
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Logout
               </button>
             ) : (
               <button
                 onClick={() => router.push("/login")}
                 className={"button-navbar"}
               >
-                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
               </button>
             )}
             <button

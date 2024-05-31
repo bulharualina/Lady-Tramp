@@ -159,14 +159,14 @@ export default function Donation() {
       <div className=" donate-bg-img grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 justify-items-start rounded-md">
           <p className="text-xl font-medium">Donation Details</p>
-          <p className="text-green-800 font-bold" style={{ fontFamily: 'Sylfaen' }}>
+          <p className="text-green-700 font-bold">
             Complete your donation by filling in the details below
           </p>
           <div className="w-full mt-6 space-y-6">
             <div className="flex flex-col">
               <label
                 htmlFor="amount"
-                className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Sylfaen' }}
+                className="text-sm font-medium text-gray-700"
               >
                 Donation Amount (USD)
               </label>
@@ -186,7 +186,7 @@ export default function Donation() {
               <button
                 disabled={!donationAmount}
                 onClick={handleCheckout}
-                className="disabled:opacity-70 rounded-lg mt-5 mr-5 w-full inline-block bg-green-700 text-white px-5 py-3 text-1xl font-medium uppercase tracking-wide" style={{ fontFamily: 'Ink Free' }}
+                className="disabled:opacity-50 rounded-lg mt-5 mr-5 w-full inline-block bg-green-700 text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
               >
                 Donate
               </button>

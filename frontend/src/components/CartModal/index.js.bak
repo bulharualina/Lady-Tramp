@@ -1,0 +1,64 @@
+"use client";
+
+import { Fragment, useContext, useEffect } from "react";
+import CommonModal from "../CommonModal";
+import { GlobalContext } from "@/context";
+import { getAllCartItems } from "@/services/cart";
+
+export default function CartModal() {
+  const { showCartModal, setShowCartModal, cartItems, setCartItems, user } =
+    useContext(GlobalContext);
+
+  async function extractAllCartItems() {
+    setPageLevelLoader(true);
+    try {
+      const res = await getAllCartItems(user?._id);
+
+      if (res && res.success) {
+        const updatedData =
+          res.data && res.data.length
+            ? res.data.map((item) => ({
+                ...item,
+                dogID: { ...item.dogID },
+              }))
+            : [];
+        setCartItems(updatedData);
+        localStorage.setItem("cartItems", JSON.stringify(updatedData));
+      } else {
+        // Handle API response errors
+        console.error("Failed to retrieve cart items:", res.error);
+      }
+    } catch (error) {
+      // Handle async/await errors
+      console.error("An error occurred while fetching cart items:", error);
+    } finally {
+      setPageLevelLoader(false);
+    }
+  }
+
+  useEffect(() => {
+    if (user !== null) extractAllCartItems();
+  }, [user]);
+
+  return (
+    <CommonModal
+      showButtons={true}
+      show={showCartModal}
+      setShow={setShowCartModal}
+      buttonComponent={
+        <Fragment>
+          <button
+            type="button"
+            onClick={() => {
+              router.push("/contact");
+              setShowCartModal(false);
+            }}
+            className={"cart-button"}
+          >
+            Contact
+          </button>
+        </Fragment>
+      }
+    />
+  );
+}

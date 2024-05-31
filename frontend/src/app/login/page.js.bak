@@ -73,13 +73,12 @@ export default function Login() {
   }, [isAuthUser]);
 
   return (
-    <div className="bg-white relative" style={{ fontFamily: 'Sylfaen' }}>
+    <div className="bg-white relative">
       <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-8 mr-auto xl:px-5 lg:flex-row">
-        <div className="login-bg-img">
         <div className="flex flex-col justify-center items-center w-full pr-10 pl-10 lg:flex-row">
           <div className="w-full mt-10 mr-0 mb-0 ml-0 relative max-w-2xl lg:mt-0 lg:w-5/12">
             <div className="flex flex-col items-center justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl relative z-10">
-              <p className="w-full text-gray-800 text-4xl font-medium text-center font-serif">
+              <p className="w-full text-4xl font-medium text-center font-serif">
                 Login
               </p>
 
@@ -87,7 +86,6 @@ export default function Login() {
                 {loginFormControls.map((controlItem) =>
                   controlItem.componentType === "input" ? (
                     <InputComponent
-                      key={controlItem.id}
                       type={controlItem.type}
                       placeholder={controlItem.placeholder}
                       label={controlItem.label}
@@ -98,7 +96,6 @@ export default function Login() {
                           [controlItem.id]: event.target.value,
                         });
                       }}
-                      className="transparent-input" /* Aplicarea clasei transparente */
                     />
                   ) : controlItem.componentType === "select" ? (
                     <SelectComponent
@@ -125,10 +122,10 @@ export default function Login() {
                     "Login"
                   )}
                 </button>
-                <div className="text-gray-800 flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
                   <p>New to website ?</p>
                   <button
-                    className="button-custom" style={{ fontFamily: 'Sylfaen' }}
+                    className="button-custom"
                     onClick={() => router.push("/register")}
                   >
                     Register
@@ -140,7 +137,6 @@ export default function Login() {
         </div>
       </div>
       <Notification />
-    </div>
     </div>
   );
 }

@@ -99,12 +99,12 @@ export default function DogButton({ item }) {
         componentLevelLoader.loading &&
         item._id === componentLevelLoader.id ? (
           <ComponentLevelLoader
-            text={"Adding to cart"}
+            text={"Adding to favorite"}
             color={"#ffffff"}
             loading={componentLevelLoader && componentLevelLoader.loading}
           />
         ) : (
-          " Add To Card"
+          " Add To Favorite"
         )}
       </button>
     </>

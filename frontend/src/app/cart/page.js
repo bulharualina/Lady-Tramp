@@ -34,7 +34,7 @@ export default function Cart() {
           : [];
       setCartItems(updatedData);
       setPageLevelLoader(false);
-      localStorage.setItem("favoriteItems", JSON.stringify(updatedData));
+      localStorage.setItem("cartItems", JSON.stringify(updatedData));
     }
 
     console.log(res);
