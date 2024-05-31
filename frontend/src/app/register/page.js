@@ -40,8 +40,6 @@ export default function Register() {
       : false;
   }
 
-  //console.log(isFormValid());
-
   async function handleRegisterOnSubmit() {
     setPageLevelLoader(true);
     const data = await registerNewUser(formData);

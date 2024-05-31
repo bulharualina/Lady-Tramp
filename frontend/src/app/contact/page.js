@@ -80,7 +80,11 @@ export default function Contact() {
       <div className="contact-info" style={{ position: 'absolute' ,marginTop: '100000000px', bottom: 0, right: '150px', padding: '12px', border: '1px solid #ccc', borderRadius: '10px', fontFamily: 'Ink Free' }}>
         <h3>Despre Noi</h3>
         <div className="contact-info" style={{ marginTop: '10px', fontFamily: 'Ink Free' }}>
+<<<<<<< HEAD
         <h3>Aboneaza-te la Newsletter</h3>
+=======
+        <h3>Abonează-te la Newsletter</h3>
+>>>>>>> 193af1b896ce52e8a6c79619e9ed354f90dfcf83
         </div>
       </div>
 
