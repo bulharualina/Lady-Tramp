@@ -88,14 +88,7 @@ export default function Navbar() {
             onClick={() => router.push("/")}
             className="flex items-center cursor-pointer"
           >
-<<<<<<< HEAD
-            <span
-              className="self-center text-5xl font-semibold whitespace-nowrap text-[#3C2925]"
-              style={{ fontFamily: "Ink Free" }}
-            >
-=======
             <span className="self-center text-5xl font-semibold whitespace-nowrap text-[#3C2925]" style={{ fontFamily: 'Ink Free' }}>
->>>>>>> 193af1b896ce52e8a6c79619e9ed354f90dfcf83
               Lady & Tramp
             </span>
           </div>
@@ -142,11 +135,7 @@ export default function Navbar() {
                 onClick={() => router.push("/login")}
                 className={"button-navbar"}
               >
-<<<<<<< HEAD
                 <i class="fa-solid fa-right-to-bracket"></i>
-=======
-                <i class="fa-solid fa-arrow-left-from-bracket"></i>
->>>>>>> 193af1b896ce52e8a6c79619e9ed354f90dfcf83
               </button>
             )}
             <button
