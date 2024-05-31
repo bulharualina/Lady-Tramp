@@ -41,7 +41,7 @@ export async function POST(req) {
       if (isCurrentCartItemAlreadyExists?.length > 0) {
         return NextResponse.json({
           success: false,
-          message: "Dog is already added in cart! Please add different dog",
+          message: "Dog is already added in favorite! Please add different dog",
         });
       }
 
@@ -52,12 +52,12 @@ export async function POST(req) {
       if (saveDogToCart) {
         return NextResponse.json({
           success: true,
-          message: "Dog is added to cart !",
+          message: "Dog is added to favorite !",
         });
       } else {
         return NextResponse.json({
           success: false,
-          message: "Failed to add the dog to cart ! Please try again.",
+          message: "Failed to add the dog to favorite! Please try again.",
         });
       }
     } else {
