@@ -200,6 +200,32 @@ img {
   justify-content: start;
 }
 
+.login-bg-img {
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  background-image: url("./images/img6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.contact-bg-img {
+  width: 200%;
+  height: 100vh; /* Make sure it takes full viewport height */
+  background-color: #ffffff;
+  background-image: url("./images/new.jpg"); /* Ensure the path is correct */
+  background-size: cover; /* This will cover the entire div */
+  background-position: center; /* This will center the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
 .contact-form {
   background: #fff;
   padding: 20px 30px;
@@ -255,4 +281,50 @@ img {
 .input-container textarea {
   height: 100px;
   resize: none;
+}
+
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.5); /* Background alb cu 80% opacitate */
+}
+
+.flex.flex-col.items-center.justify-start.pt-10.pr-10.pb-10.pl-10.bg-white.shadow-2xl.rounded-xl.relative.z-10 {
+  background-color: rgba(255, 255, 255, 0.3); /* Background alb cu 80% opacitate */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* styles.css */
+
+body {
+  font-family: 'Arial', sans-serif; /* Font global */
+}
+
+input,
+select,
+button,
+label {
+  font-family: 'Arial', sans-serif; /* Font pentru formulare */
+}
+
+/* Stiluri specifice pentru alte elemente */
+.nav-item {
+  font-family: 'Arial', sans-serif; /* Font pentru elementele de navigare */
+}
+
+.form-label {
+  font-family: 'Arial', sans-serif; /* Font pentru etichetele de formulare */
+}
+
+.form-input {
+  font-family: 'Arial', sans-serif; /* Font pentru inputuri */
+}
+
+/* globals.css */
+.transparent-input {
+  background-color: rgba(255, 255, 255, 0.5); /* Fundal semi-transparent */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Bordura semi-transparentă */
+  padding: 10px; /* Spațiere internă */
+  border-radius: 5px; /* Colțuri rotunjite */
+  font-family: 'Sylfaen', sans-serif; /* Fontul dorit */
+  font-size: 16px; /* Dimensiunea fontului */
+  color: #333; /* Culoarea textului */
 }

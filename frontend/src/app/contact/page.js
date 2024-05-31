@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState } from "react";
 import "../globals.css";
@@ -27,9 +27,11 @@ export default function Contact() {
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-screen-xl px-4 sm:px-6 lg:px-8 text-center">
-      <div className="contact-form">
-        <h2>Contact us</h2>
+    <div className="contact-bg-img mx-auto mt-10 max-w-screen-xl px-4 sm:px-6 lg:px-8 text-center" style={{ marginTop: '50px', fontFamily: 'Sylfaen' }}>
+      <div className="contact-form text-1xl" style={{ fontFamily: 'Sylfaen' }}>
+        <div className="text-xl" style={{ fontFamily: 'Ink Free' }}>
+        <h2>CONTACT US</h2>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <input
@@ -41,7 +43,7 @@ export default function Contact() {
               }
               required
             />
-            <label>Name</label>
+            <label>NAME</label>
           </div>
           <div className="input-container">
             <input
@@ -53,7 +55,7 @@ export default function Contact() {
               }
               required
             />
-            <label>Email</label>
+            <label>EMAIL</label>
           </div>
           <div className="input-container">
             <textarea
@@ -64,14 +66,31 @@ export default function Contact() {
               }
               required
             ></textarea>
-            <label>Message</label>
+            <label>MESSAGE</label>
           </div>
-          <button type="submit" className="button-custom">
-            Send Message
+          <button type="submit" className="button-custom" style={{ fontFamily: 'Ink Free' }}>
+            <div className="contact-form text-1xl">
+            SEND MESSAGE
+            </div>
           </button>
         </form>
       </div>
       <Notification />
+
+      <div className="contact-info" style={{ position: 'absolute' ,marginTop: '100000000px', bottom: 0, right: '150px', padding: '12px', border: '1px solid #ccc', borderRadius: '10px', fontFamily: 'Ink Free' }}>
+        <h3>Despre Noi</h3>
+        <div className="contact-info" style={{ marginTop: '10px', fontFamily: 'Ink Free' }}>
+        <h3>Abonează-te la Newsletter</h3>
+        </div>
+      </div>
+
+      <div className="contact-info" style={{ marginTop: '1000px',  position: 'absolute', bottom: 0, right: '385px', padding: '5px', border: '1px solid #ccc', borderRadius: '10px', fontFamily: 'Ink Free' }}>
+        <h3>Linkuri Utile</h3>
+        <ul>
+          <li><a href="https://adapostulsperanta.ro/politica-de-confidentialitate/">Politica si confidentialitate</a></li>
+          <li><a href="https://adapostulsperanta.ro/politica-de-cookies/">Cookies</a></li>
+        </ul>
+      </div>
     </div>
   );
 }

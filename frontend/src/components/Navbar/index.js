@@ -88,8 +88,8 @@ export default function Navbar() {
             onClick={() => router.push("/")}
             className="flex items-center cursor-pointer"
           >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-[#3C2925]">
-              Lady&Tramp
+            <span className="self-center text-5xl font-semibold whitespace-nowrap text-[#3C2925]" style={{ fontFamily: 'Ink Free' }}>
+              Lady & Tramp
             </span>
           </div>
           <div className="flex md:order-2 gap-2">
@@ -99,13 +99,13 @@ export default function Navbar() {
                   className={"button-navbar"}
                   onClick={() => router.push("/account")}
                 >
-                  Account
+                  <i class="fa-solid fa-user"></i>
                 </button>
                 <button
                   className={"button-navbar"}
                   onClick={() => router.push("/cart")}
                 >
-                  Favorites
+                  <i class="fa-solid fa-heart"></i>
                 </button>
               </Fragment>
             ) : null}
@@ -115,27 +115,27 @@ export default function Navbar() {
                   onClick={() => router.push("/")}
                   className={"button-navbar"}
                 >
-                  Client View
+                  <i class="fa-solid fa-circle-user"></i>
                 </button>
               ) : (
                 <button
                   onClick={() => router.push("/admin-view/all-dogs")}
                   className={"button-navbar"}
                 >
-                  Admin View
+                  <i class="fa-solid fa-key"></i>
                 </button>
               )
             ) : null}
             {isAuthUser ? (
               <button onClick={handleLogout} className={"button-navbar"}>
-                Logout
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
               </button>
             ) : (
               <button
                 onClick={() => router.push("/login")}
                 className={"button-navbar"}
               >
-                Login
+                <i class="fa-solid fa-arrow-left-from-bracket"></i>
               </button>
             )}
             <button
