@@ -133,7 +133,7 @@ export default function Home() {
           {/* Add recent articles here */}
         </div>
         <button
-          //onClick={() => router.push("/news")}
+          onClick={() => router.push("/news")}
           className="mt-6 btn-primary"
         >
           Read More

@@ -22,7 +22,10 @@ export default function CartModal() {
   const router = useRouter();
 
   async function extractAllCartItems() {
-    const res = await getAllCartItems(user?._id);
+    if (!user?._id) return; // Ensure user ID exists
+    const res = await getAllCartItems(user._id);
+
+    console.log("API Response: ", res); // Debugging
 
     if (res.success) {
       const updatedData =
@@ -36,18 +39,21 @@ export default function CartModal() {
           : [];
       setCartItems(updatedData);
       localStorage.setItem("cartItems", JSON.stringify(updatedData));
+    } else {
+      console.error("Failed to fetch cart items"); // Debugging
     }
-
-    console.log(res);
   }
 
   useEffect(() => {
+    console.log("User: ", user); // Debugging
     if (user !== null) extractAllCartItems();
   }, [user]);
 
   async function handleDeleteCartItem(getCartItemID) {
     setComponentLevelLoader({ loading: true, id: getCartItemID });
     const res = await deleteFromCart(getCartItemID);
+
+    console.log("Delete Response: ", res); // Debugging
 
     if (res.success) {
       setComponentLevelLoader({ loading: false, id: "" });
@@ -76,19 +82,15 @@ export default function CartModal() {
               <li key={cartItem._id} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img
-                    src={cartItem && cartItem.dogID && cartItem.dogID.imageUrl}
-                    alt="Cart Item"
+                    src={cartItem?.dogID?.imageUrl || ""}
+                    alt={cartItem?.dogID?.name || "Cart Item"}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
                 <div className="ml-4 flex flex-1 flex-col">
                   <div>
                     <div className="flex justify-between text-base font-medium text-zinc-100">
-                      <h3>
-                        <a>
-                          {cartItem && cartItem.dogID && cartItem.dogID.name}
-                        </a>
-                      </h3>
+                      <h3>{cartItem?.dogID?.name}</h3>
                     </div>
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
@@ -97,15 +99,12 @@ export default function CartModal() {
                       className="font-medium text-orange-300 sm:order-2"
                       onClick={() => handleDeleteCartItem(cartItem._id)}
                     >
-                      {componentLevelLoader &&
-                      componentLevelLoader.loading &&
+                      {componentLevelLoader?.loading &&
                       componentLevelLoader.id === cartItem._id ? (
                         <ComponentLevelLoader
                           text={"Removing"}
                           color={"#ffffff"}
-                          loading={
-                            componentLevelLoader && componentLevelLoader.loading
-                          }
+                          loading={componentLevelLoader.loading}
                         />
                       ) : (
                         "Remove"
@@ -116,7 +115,9 @@ export default function CartModal() {
               </li>
             ))}
           </ul>
-        ) : null
+        ) : (
+          <p className="text-center text-gray-500">No items in your cart</p>
+        )
       }
       buttonComponent={
         <Fragment>
